@@ -47,7 +47,10 @@ body.contact-page {
     max-width: 300px;
     max-height: 30vh;
     object-fit: contain;
-    margin: 20px auto 15px; /* Added bottom margin */
+    margin: 0 auto; /* Remove top and bottom margin */}
+
+#contact-section .logo-container {
+    margin-top: -40px; /* Adjust this value as needed */
 }
 
 @media (max-width: 767px) {
@@ -56,10 +59,6 @@ body.contact-page {
       padding-left: 15px;
       padding-right: 15px;
       box-sizing: border-box;
-    }
-
-    #contact-section .contact-image {
-        margin-bottom: 30px; /* Increased bottom margin for smaller screens */
     }
   }
 
