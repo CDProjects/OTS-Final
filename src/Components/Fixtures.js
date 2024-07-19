@@ -12,7 +12,25 @@ const Fixtures = () => {
     fetch('/competitionTable.html')
       .then(response => response.text())
       .then(data => {
-        setCompetitionTable(data);
+        // Parse the HTML string
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(data, 'text/html');
+
+        // Modify the structure of the second column
+        const cells = doc.querySelectorAll('td:nth-child(2)');
+        cells.forEach(cell => {
+          const img = cell.querySelector('img');
+          const text = cell.textContent.trim();
+          cell.innerHTML = `
+            <div class="team-info">
+              ${img ? img.outerHTML : ''}
+              <span>${text}</span>
+            </div>
+          `;
+        });
+
+        // Convert back to string
+        setCompetitionTable(doc.body.innerHTML);
         setIsLoading(false);
       })
       .catch(err => {
@@ -47,7 +65,9 @@ const Fixtures = () => {
         {isLoading && <p>Loading competition table...</p>}
         {error && <p>Error loading competition table: {error.message}</p>}
         {competitionTable && (
+          <div className="competition-table-wrapper">
           <div className="competition-table" dangerouslySetInnerHTML={{ __html: competitionTable }} />
+        </div>
         )}
 
         <picture>

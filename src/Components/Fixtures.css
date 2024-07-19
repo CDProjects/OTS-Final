@@ -8,10 +8,14 @@
   color: #ffffff;
 }
 
+.competition-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
 .competition-table {
   margin-bottom: 20px;
-  overflow-x: auto;
-  max-width: 100%;
+  width: 100%;
 }
 
 .competition-table table {
@@ -42,29 +46,21 @@
 }
 
 /* Style for the team name and logo */
-.competition-table td:nth-child(2) > div {
+.competition-table .team-info {
   display: flex;
   align-items: center;
 }
 
-.competition-table td:nth-child(2) .MuiBox-root {
-  display: flex;
-  align-items: center;
-}
-
-.competition-table td:nth-child(2) .MuiBox-root > div:first-child {
-  margin-right: 4px;
+.competition-table .team-info img {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-right: 8px;
 }
 
 .competition-table th {
   background-color: #f2f2f2;
   font-weight: bold;
-}
-
-.competition-table img {
-  width: 16px;
-  height: 16px;
-  vertical-align: middle;
 }
 
 .competition-table .sticky-col {
@@ -116,8 +112,14 @@
 }
 
 @media (min-width: 768px) {
+  .competition-table-wrapper {
+    width: 710px;
+    margin: 0 auto;
+  }
+
   .competition-table table {
     font-size: 16px;
+    width: 100%;
   }
 
   .competition-table th,
@@ -125,7 +127,7 @@
     padding: 8px;
   }
 
-  .competition-table img {
+  .competition-table .team-info img {
     width: 24px;
     height: 24px;
   }
