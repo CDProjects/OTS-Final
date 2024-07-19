@@ -59,7 +59,7 @@ const Fixtures = () => {
       <section id="fixtures-section" className="fixtures-section">
         <div id="fixtures-marker"></div>
         <div className="content-container">
-          <h1 className="section-title">FIXTURES</h1>
+          <h1 className="section-title">RESULTS & FIXTURES</h1>
         </div>
         
         {isLoading && <p>Loading competition table...</p>}

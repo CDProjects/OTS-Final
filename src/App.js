@@ -24,7 +24,7 @@ function TitleUpdater() {
       '/team': 'TEAM',
       '/training': 'TRAINING',
       '/juniors': 'JUNIORS',
-      '/fixtures': 'FIXTURES',
+      '/fixtures': 'RESULTS & FIXTURES',
       '/media-recruitment': 'MEDIA & RECRUITMENT',
       '/contact': 'CONTACT'
     };
