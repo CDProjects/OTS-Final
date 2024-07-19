@@ -1,11 +1,25 @@
-import React from 'react';
-import { useFetchCompetitionTable } from './useFetchCompetitionTable';
+import React, { useEffect, useState } from 'react';
 import ErrorBoundary from './ErrorBoundary';
 import './Fixtures.css';
 import shamrocksHRC2024 from '../Images/HRC Shamrocks 2024.jpg';
 
 const Fixtures = () => {
-  const { data: competitionTable, isLoading, error } = useFetchCompetitionTable();
+  const [competitionTable, setCompetitionTable] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch('/competitionTable.html')
+      .then(response => response.text())
+      .then(data => {
+        setCompetitionTable(data);
+        setIsLoading(false);
+      })
+      .catch(err => {
+        setError(err);
+        setIsLoading(false);
+      });
+  }, []);
 
   const fixturesData = [
     { date: "1.6", teams: "SHAMROCKS - TAMPERE", score: "26 - 14" },

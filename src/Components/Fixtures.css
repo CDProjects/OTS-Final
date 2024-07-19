@@ -5,6 +5,31 @@
     padding-top: 60px;
     color: #ffffff;
   }
+
+  .competition-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .competition-table th,
+  .competition-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .competition-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .competition-table img {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
   
   .fixtures-picture {
     width: 100%;

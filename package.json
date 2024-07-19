@@ -8,7 +8,9 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.2",
+    "cheerio": "^1.0.0-rc.12",
     "leaflet": "^1.9.4",
+    "puppeteer": "^22.13.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-leaflet": "^4.2.1",
@@ -23,7 +25,8 @@
     "eject": "react-scripts eject",
     "convert-webp": "node convert-to-webp.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "update-table": "node src/updateCompetitionTable.js"
   },
   "eslintConfig": {
     "extends": [
@@ -46,6 +49,8 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@craco/craco": "^7.1.0",
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.10",
     "cross-env": "^7.0.3",
     "gh-pages": "^6.1.1",
     "image-minimizer-webpack-plugin": "^4.0.2",
