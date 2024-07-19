@@ -1,115 +1,171 @@
 .fixtures-section {
-    padding-bottom: calc(var(--footer-height) + 20px); /* Add extra padding to ensure content is visible */
-    min-height: 100vh; /* Ensure the section takes at least the full viewport height */
-    text-align: center;
-    padding-top: 60px;
-    color: #ffffff;
+  padding-bottom: calc(
+    var(--footer-height) + 20px
+  ); /* Add extra padding to ensure content is visible */
+  min-height: 100vh; /* Ensure the section takes at least the full viewport height */
+  text-align: center;
+  padding-top: 60px;
+  color: #ffffff;
+}
+
+.competition-table {
+  margin-bottom: 20px;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.competition-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.competition-table th,
+.competition-table td {
+  border: 1px solid #ddd;
+  text-align: left;
+  white-space: nowrap;
+  height: 20px; /* Set a fixed height for rows */
+  line-height: 0.8; /* Adjust line height for better vertical alignment */
+}
+
+/* Center text in all columns except the first two */
+.competition-table td:nth-child(n + 3),
+.competition-table th:nth-child(n + 3) {
+  text-align: center;
+}
+
+/* Keep left alignment for the first two columns */
+.competition-table td:nth-child(-n + 2),
+.competition-table th:nth-child(-n + 2) {
+  text-align: left;
+}
+
+/* Style for the team name and logo */
+.competition-table td:nth-child(2) > div {
+  display: flex;
+  align-items: center;
+}
+
+.competition-table td:nth-child(2) .MuiBox-root {
+  display: flex;
+  align-items: center;
+}
+
+.competition-table td:nth-child(2) .MuiBox-root > div:first-child {
+  margin-right: 4px;
+}
+
+.competition-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.competition-table img {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+
+.competition-table .sticky-col {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+.fixtures-picture {
+  width: 100%;
+  max-width: 750px;
+  height: auto;
+  margin: 10px auto;
+}
+
+.fixtures-subtitle {
+  text-align: center;
+  margin: 5px 0;
+}
+
+.fixtures-text {
+  display: flex;
+  text-align: left;
+  max-width: 400px;
+  margin: 10px auto;
+  font-size: 15px;
+}
+
+.date {
+  margin-left: 10px;
+  width: 70px;
+  text-align: left;
+}
+
+.teams {
+  margin-left: 10px;
+  width: 300px;
+  text-align: left;
+}
+
+.score {
+  margin-left: 0px;
+  width: 100px;
+  text-align: right;
+}
+
+.competition-table {
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .competition-table table {
+    font-size: 16px;
   }
 
-  .competition-table table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
   .competition-table th,
   .competition-table td {
-    border: 1px solid #ddd;
     padding: 8px;
-    text-align: left;
   }
-  
-  .competition-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-  }
-  
+
   .competition-table img {
     width: 24px;
     height: 24px;
-    vertical-align: middle;
-    margin-right: 10px;
   }
-  
-  .fixtures-picture {
-    width: 100%;
-    max-width: 750px;
-    height: auto;
-    margin: 10px auto;
-  }
-  
-  .fixtures-subtitle {
-    text-align: center;
-    margin: 5px 0;
-  }
-  
+
   .fixtures-text {
-    display: flex;
-    text-align: left;
-    max-width: 400px;
-    margin: 10px auto;
-    font-size: 15px;
+    font-size: 18px;
   }
-  
+
   .date {
-    margin-left: 10px;
-    width: 70px;
-    text-align: left;
+    margin-left: 60px;
   }
-  
+
   .teams {
-    margin-left: 10px;
-    width: 300px;
-    text-align: left;
+    margin-left: -10px;
+    width: 200px;
   }
-  
+
   .score {
-    margin-left: 0px;
-    width: 100px;
-    text-align: right;
+    margin-right: 70px;
   }
-  
-  .competition-table {
-    margin-bottom: 20px;
+}
+
+@media (min-width: 1025px) {
+  .fixtures-section .date,
+  .fixtures-section .score,
+  .fixtures-section .teams {
+    font-size: 25px;
   }
-  
-  @media (min-width: 768px) {
-    .fixtures-text {
-      font-size: 18px;
-    }
-  
-    .date {
-      margin-left: 60px;
-    }
-  
-    .teams {
-      margin-left: -10px;
-      width: 200px;
-    }
-  
-    .score {
-      margin-right: 70px;
-    }
+
+  .teams {
+    margin-left: 0;
+    width: 260px;
   }
-  
-  @media (min-width: 1025px) {
-    .fixtures-section .date,
-    .fixtures-section .score,
-    .fixtures-section .teams {
-      font-size: 25px;
-    }
-  
-    .teams {
-      margin-left: 0;
-      width: 260px;
-    }
-  
-    .date {
-      margin: 0;
-      width: 80px;
-    }
-  
-    .score {
-      margin-right: -9px;
-    }
+
+  .date {
+    margin: 0;
+    width: 80px;
   }
+
+  .score {
+    margin-right: -9px;
+  }
+}
