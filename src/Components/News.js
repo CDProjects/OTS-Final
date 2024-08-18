@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './News.css';
 import FacebookPageWrapper from './FacebookPageWrapper';
+import Article from './Article';
 
 const News = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -40,14 +41,17 @@ const News = () => {
                     <p>Loading news feed...</p>
                 </div>
             ) : (
-                <div className="fb-page-container">
-                    <FacebookPageWrapper 
-                        fbPageUrl="https://www.facebook.com/OldTownShamrocks/"
-                        tabs="timeline"
-                        width={containerWidth.toString()}
-                        height="700"
-                    />
-                </div>
+                <>
+                    <div className="fb-page-container">
+                        <FacebookPageWrapper
+                            fbPageUrl="https://www.facebook.com/OldTownShamrocks/"
+                            tabs="timeline"
+                            width={containerWidth.toString()}
+                            height="700"
+                        />
+                    </div>
+                    <Article />
+                </>
             )}
         </div>
     );

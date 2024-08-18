@@ -21,6 +21,42 @@
     animation: spin 1s linear infinite;
 }
 
+/* Existing styles... */
+
+/* New styles for the Article component */
+.article {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: black;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.article h2 {
+    color: #2e8b57;
+    margin-bottom: 20px;
+}
+
+.article h3 {
+    color: #2e8b57;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.article p {
+    margin-bottom: 60px;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .article {
+        padding: 15px;
+        margin: 20px 10px;
+    }
+}
+
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
