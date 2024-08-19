@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ChevronRight, ChevronDown, Facebook, Twitter, Share } from 'lucide-react';
 import './ExpandNews.css';
 
-const ExpandableNewsArticle = ({ title, date, content, language }) => {
+const ExpandableNewsArticle = ({ title, date, content, language, images }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [truncatedTitle, setTruncatedTitle] = useState(title);
   const titleRef = useRef(null);
@@ -38,8 +38,33 @@ const ExpandableNewsArticle = ({ title, date, content, language }) => {
     return () => window.removeEventListener('resize', truncateTitle);
   }, [title]);
 
+  const renderContent = () => {
+    const contentParagraphs = content.split('\n\n');
+    const result = [];
+    let imageIndex = 0;
+
+    contentParagraphs.forEach((paragraph, index) => {
+      result.push(<p key={`p-${index}`}>{paragraph}</p>);
+      
+      // Insert an image after every other paragraph, if available
+      if (images && images[imageIndex] && index % 2 === 1) {
+        result.push(
+          <img
+            key={`img-${imageIndex}`}
+            src={images[imageIndex].src}
+            alt={images[imageIndex].alt}
+            className="article-image"
+          />
+        );
+        imageIndex++;
+      }
+    });
+
+    return result;
+  };
+
   return (
-    <div className="expandable-article" ref={containerRef}>
+    <div className={`expandable-article ${isExpanded ? 'expanded' : ''}`} ref={containerRef}>
       <div className="article-header" onClick={toggleExpand}>
         <div className="title-section">
           <div className="icon">
@@ -62,9 +87,7 @@ const ExpandableNewsArticle = ({ title, date, content, language }) => {
       </div>
       {isExpanded && (
         <div className="article-content">
-          {content.split('\n\n').map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))}
+          {renderContent()}
         </div>
       )}
     </div>
