@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './News.css';
 import FacebookPageWrapper from './FacebookPageWrapper';
-import Article from './Article';
+import ExpandableNewsArticle from './ExpandNews';
+
+// Import the article data directly, not the component
+import { articleData } from './ArticleData';
 
 const News = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -50,7 +53,14 @@ const News = () => {
                             height="700"
                         />
                     </div>
-                    <Article />
+                    <div className="max-w-3xl mx-auto mt-8">
+                        <ExpandableNewsArticle
+                            title={articleData.title}
+                            date={articleData.date}
+                            content={articleData.content}
+                            language="fi"
+                        />
+                    </div>
                 </>
             )}
         </div>
