@@ -41,22 +41,21 @@ const ExpandableNewsArticle = ({ title, date, content, language, images }) => {
   const renderContent = () => {
     const contentParagraphs = content.split('\n\n');
     const result = [];
-    let imageIndex = 0;
 
     contentParagraphs.forEach((paragraph, index) => {
       result.push(<p key={`p-${index}`}>{paragraph}</p>);
       
-      // Insert an image after every other paragraph, if available
-      if (images && images[imageIndex] && index % 2 === 1) {
+      // Insert an image after every 2 paragraphs, if available
+      if (images && images[Math.floor(index / 2)] && (index + 1) % 2 === 0) {
+        const image = images[Math.floor(index / 2)];
         result.push(
           <img
-            key={`img-${imageIndex}`}
-            src={images[imageIndex].src}
-            alt={images[imageIndex].alt}
+            key={`img-${Math.floor(index / 2)}`}
+            src={image.src}
+            alt={image.alt}
             className="article-image"
           />
         );
-        imageIndex++;
       }
     });
 

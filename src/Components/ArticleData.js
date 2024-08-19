@@ -1,5 +1,6 @@
-import image1 from "../Images/Ale_running.png";
+import image1 from "../Images/Team 2024.jpg";
 import image2 from "../Images/Petu_run.png";
+import image3 from "../Images/Ale_running.png";
 
 export const articleData = {
   title:
@@ -127,7 +128,8 @@ export const articleData = {
           Shamrocks’ U8 and U13 juniors will also be playing on finals day.
         `,
   images: [
-    { src: image1, alt: "Ale only the lonely" },
+    { src: image1, alt: "Team 2024" },
     { src: image2, alt: "Petu running hard" },
+    { src: image3, alt: "Ale only the lonely" }
   ],
 };
