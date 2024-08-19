@@ -81,7 +81,7 @@ const ExpandableNewsArticle = ({
   };
 
   const shareOnFacebook = () => {
-    const articleUrl = encodeURIComponent(`https://shamrocks.fi/news/${id}`);
+    const articleUrl = encodeURIComponent(`https://shamrocks.fi/#/news/${id}`);
     const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${articleUrl}`;
     window.open(shareUrl, 'FacebookShare', 'width=626,height=436');
   };
