@@ -63,15 +63,9 @@ const ExpandableNewsArticle = ({ id, title, date, content, language, images }) =
   };
 
   const shareOnFacebook = () => {
-    const articleUrl = encodeURIComponent(`${window.location.origin}/news?article=${id}`);
+    const articleUrl = encodeURIComponent('https://yourusername.github.io/your-repo/article.html');
     const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${articleUrl}`;
-    
-    if (process.env.NODE_ENV === 'production') {
-      window.open(shareUrl, 'FacebookShare', 'width=626,height=436');
-    } else {
-      console.log('Facebook share URL (for testing):', shareUrl);
-      alert('In development, this would open a Facebook share dialog. For local testing, check the console for the share URL.');
-    }
+    window.open(shareUrl, 'FacebookShare', 'width=626,height=436');
   };
 
 
