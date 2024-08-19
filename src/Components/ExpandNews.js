@@ -17,23 +17,25 @@ const ExpandableNewsArticle = ({ title, date, content, language }) => {
   };
 
   return (
-    <div className="border rounded-lg p-4 mb-4">
+    <div className={`border border-gray-200 rounded-lg p-4 mb-4 ${isExpanded ? 'bg-white' : 'bg-gray-50'}`}>
       <div className="flex items-center justify-between">
-        <div className="flex items-center cursor-pointer" onClick={toggleExpand}>
-          {isExpanded ? (
-            <ChevronDown className="mr-2" />
-          ) : (
-            <ChevronRight className="mr-2" />
-          )}
-          <h2 className="text-lg font-semibold">{truncateTitle(title, 50)}</h2>
+        <div className="flex items-center flex-grow cursor-pointer" onClick={toggleExpand}>
+          <div className="mr-4">
+            {isExpanded ? (
+              <ChevronDown className="w-6 h-6 text-gray-500" />
+            ) : (
+              <ChevronRight className="w-6 h-6 text-gray-500" />
+            )}
+          </div>
+          <h2 className="text-lg font-semibold flex-grow">{truncateTitle(title, 50)}</h2>
         </div>
-        <div className="flex space-x-2">
-          <Facebook className="w-5 h-5 cursor-pointer" />
-          <Twitter className="w-5 h-5 cursor-pointer" />
-          <Share className="w-5 h-5 cursor-pointer" />
+        <div className="flex space-x-2 ml-4">
+          <Facebook className="w-5 h-5 cursor-pointer text-blue-600" />
+          <Twitter className="w-5 h-5 cursor-pointer text-blue-400" />
+          <Share className="w-5 h-5 cursor-pointer text-gray-500" />
         </div>
       </div>
-      <p className="text-sm text-gray-500 mt-1">{formatDate(date)}</p>
+      <p className="text-sm text-gray-500 mt-2">{formatDate(date)}</p>
       {isExpanded && <div className="mt-4">{content}</div>}
     </div>
   );
