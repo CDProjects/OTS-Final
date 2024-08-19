@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ChevronRight, ChevronDown, Facebook, Twitter, Instagram, Share2 } from 'lucide-react';
 import './ExpandNews.css';
 
-const ExpandableNewsArticle = ({ title, date, content, language, images }) => {
+const ExpandableNewsArticle = ({ id, title, date, content, language, images }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [truncatedTitle, setTruncatedTitle] = useState(title);
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
@@ -63,18 +63,16 @@ const ExpandableNewsArticle = ({ title, date, content, language, images }) => {
   };
 
   const shareOnFacebook = () => {
-    const url = encodeURIComponent(window.location.href);
-    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+    const articleUrl = encodeURIComponent(`${window.location.origin}/news/${id}`);
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${articleUrl}`;
     
-     // For production
-     if (process.env.NODE_ENV === 'production') {
-        window.open(shareUrl, 'FacebookShare', 'width=626,height=436');
-      } else {
-        // For local testing
-        console.log('Facebook share URL (for testing):', shareUrl);
-        alert('In development, this would open a Facebook share dialog. For local testing, check the console for the share URL.');
-      }
-    };
+    if (process.env.NODE_ENV === 'production') {
+      window.open(shareUrl, 'FacebookShare', 'width=626,height=436');
+    } else {
+      console.log('Facebook share URL (for testing):', shareUrl);
+      alert('In development, this would open a Facebook share dialog. For local testing, check the console for the share URL.');
+    }
+  };
 
 
   const shareOnTwitter = () => {
