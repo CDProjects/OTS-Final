@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 
-const url = 'https://www.finland.rugby/standings-56028v4/leagues/2508/seasons/213';
+const url = 'https://www.finland.rugby/sarjataulukko-321980v4/leagues/2508/seasons/213';
 
 const cleanHtml = (html) => {
   return html.replace(/class="jss\d+"/g, '');
