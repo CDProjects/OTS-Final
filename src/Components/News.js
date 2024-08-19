@@ -52,7 +52,7 @@ const News = () => {
                         />
                     </div>
                     <div style={{ maxWidth: '800px', margin: '32px auto', backgroundColor: '#000', padding: '16px' }}>
-                        <h2 style={{ color: '#ffffff', marginBottom: '16px' }}>Articles</h2>
+                        <h2 style={{ color: '#ffffff', marginBottom: '16px' }}>ARTICLES</h2>
                         <ExpandableNewsArticle
                             title={articleData.title}
                             date={articleData.date}
