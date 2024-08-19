@@ -1,26 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ChevronRight, ChevronDown, Facebook, Twitter, Share } from 'lucide-react';
 import './ExpandNews.css';
 
 const ExpandableNewsArticle = ({ title, date, content, language }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [truncatedTitle, setTruncatedTitle] = useState(title);
+  const titleRef = useRef(null);
+  const containerRef = useRef(null);
 
   const toggleExpand = () => setIsExpanded(!isExpanded);
-
-  const truncateTitle = (str, num) => {
-    if (str.length <= num) return str;
-    return str.slice(0, num) + '...';
-  };
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return `Published ${date.getDate().toString().padStart(2, '0')}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getFullYear()}`;
   };
 
+  useEffect(() => {
+    const truncateTitle = () => {
+      const titleElement = titleRef.current;
+      const containerElement = containerRef.current;
+      if (titleElement && containerElement) {
+        const maxWidth = containerElement.offsetWidth - 150; // Adjust for icon and share buttons
+        let text = title;
+        titleElement.textContent = text;
+        
+        while (titleElement.offsetWidth > maxWidth && text.length > 0) {
+          text = text.slice(0, -1);
+          titleElement.textContent = text + '...';
+        }
+        
+        setTruncatedTitle(titleElement.textContent);
+      }
+    };
+
+    truncateTitle();
+    window.addEventListener('resize', truncateTitle);
+    return () => window.removeEventListener('resize', truncateTitle);
+  }, [title]);
+
   return (
-    <div className={`expandable-article ${isExpanded ? 'expanded' : ''}`}>
-      <div className="article-header">
-        <div className="title-section" onClick={toggleExpand}>
+    <div className="expandable-article" ref={containerRef}>
+      <div className="article-header" onClick={toggleExpand}>
+        <div className="title-section">
           <div className="icon">
             {isExpanded ? (
               <ChevronDown size={24} />
@@ -29,7 +50,7 @@ const ExpandableNewsArticle = ({ title, date, content, language }) => {
             )}
           </div>
           <div className="text-container">
-            <h2 className="title">{truncateTitle(title, 50)}</h2>
+            <h2 className="title" ref={titleRef}>{truncatedTitle}</h2>
             <span className="date">{formatDate(date)}</span>
           </div>
         </div>
@@ -39,7 +60,13 @@ const ExpandableNewsArticle = ({ title, date, content, language }) => {
           <Share size={20} />
         </div>
       </div>
-      {isExpanded && <div className="article-content">{content}</div>}
+      {isExpanded && (
+        <div className="article-content">
+          {content.split('\n\n').map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
