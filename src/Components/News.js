@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import "./News.css";
 import FacebookPageWrapper from "./FacebookPageWrapper";
 import ExpandableNewsArticle from "./ExpandNews";
 import { articleData } from "./ArticleData";
+import ErrorBoundary from "./ErrorBoundary";
 
 const News = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -35,85 +36,105 @@ const News = () => {
             navigate(location.pathname + '?' + searchParams.toString(), { replace: true });
         }
 
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 3000);
 
-    const handleResize = () => {
-      const width = Math.min(500, window.innerWidth - 40);
-      setContainerWidth(width);
+        const handleResize = () => {
+            const width = Math.min(500, window.innerWidth - 40);
+            setContainerWidth(width);
+        };
+
+        window.addEventListener("resize", handleResize);
+        handleResize();
+
+        return () => {
+            clearTimeout(timer);
+            window.removeEventListener("resize", handleResize);
+        };
+    }, [location, navigate]);
+
+    useEffect(() => {
+        if (!isLoading && window.FB) {
+            window.FB.XFBML.parse();
+        }
+    }, [isLoading, containerWidth]);
+
+    const handleExpandArticle = (articleId) => {
+        setExpandedArticleId(articleId === expandedArticleId ? null : articleId);
+        navigate(`/news?article=${articleId}`, { replace: true });
     };
 
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [location, navigate]);
-
-  useEffect(() => {
-    if (!isLoading && window.FB) {
-      window.FB.XFBML.parse();
-    }
-  }, [isLoading, containerWidth]);
-
-  const getMetaTags = () => {
-    const currentArticle = articleData; // Assume we're always showing the latest article
-    const articleUrl = `${window.location.origin}/news/${currentArticle.id}`;
+    const getMetaTags = () => {
+        let currentArticle = articleData; // Assuming articleData is an object with the article details.
     
-    return (
-        <Helmet>
-            <title>{currentArticle.title} | Shamrocks News</title>
-            <meta property="og:title" content={currentArticle.title} />
-            <meta property="og:description" content={currentArticle.content.substring(0, 200) + '...'} />
-            <meta property="og:url" content={articleUrl} />
-            <meta property="og:type" content="article" />
-            <meta property="og:image" content={currentArticle.images[0].src} />
-            <meta property="og:image:alt" content={currentArticle.images[0].alt} />
-        </Helmet>
-    );
-};
+        const articleUrl = `${window.location.origin}/news/${currentArticle.id || 'default-id'}`;
+        const description = currentArticle.content && typeof currentArticle.content === 'string'
+            ? currentArticle.content.substring(0, 200) + '...'
+            : 'Latest news from Shamrocks';
 
-return (
-    <div className="news-section">
-        {getMetaTags()}
-        <h1>NEWS</h1>
-        {isLoading ? (
-            <div className="custom-loader">
-                <div className="spinner"></div>
-                <p>Loading news feed...</p>
-            </div>
-        ) : (
-            <>
-                <div className="fb-page-container">
-                    <FacebookPageWrapper
-                        fbPageUrl="https://www.facebook.com/OldTownShamrocks/"
-                        tabs="timeline"
-                        width={containerWidth.toString()}
-                        height="700"
-                    />
+            console.log('Meta title:', String(currentArticle.title || 'Shamrocks News'));
+console.log('Meta description:', String(description));
+console.log('Meta url:', String(articleUrl));
+console.log('Meta image:', currentArticle.images && currentArticle.images[0] && String(currentArticle.images[0].src));
+        
+        return (
+            <ErrorBoundary>
+            <Helmet>
+                <title>{String(currentArticle.title || 'Shamrocks News')} | Shamrocks News</title>
+                <meta property="og:title" content={String(currentArticle.title || 'Shamrocks News')} />
+                <meta property="og:description" content={String(description)} />
+                <meta property="og:url" content={String(articleUrl)} />
+                <meta property="og:type" content="article" />
+                {currentArticle.images && currentArticle.images[0] && (
+                    <>
+                        <meta property="og:image" content={String(currentArticle.images[0].src)} />
+                        <meta property="og:image:alt" content={String(currentArticle.images[0].alt || '')} />
+                    </>
+                )}
+            </Helmet>
+            </ErrorBoundary>
+        );
+    };
+    
+
+    return (
+        <div className="news-section">
+            {getMetaTags()}
+            <h1>NEWS</h1>
+            {isLoading ? (
+                <div className="custom-loader">
+                    <div className="spinner"></div>
+                    <p>Loading news feed...</p>
                 </div>
-                <div style={{ maxWidth: '800px', margin: '32px auto', backgroundColor: '#000', padding: '16px' }}>
-                    <h2 style={{ color: '#ffffff', marginBottom: '16px' }}>ARTICLES</h2>
-                    <ExpandableNewsArticle
-                        id={articleData.id}
-                        title={articleData.title}
-                        date={articleData.date}
-                        content={articleData.content}
-                        language="fi"
-                        images={articleData.images}
-                        isExpanded={expandedArticleId === articleData.id}
-                    />
-                    <Link to={`/news/${articleData.id}`} style={{ color: '#2e8b57', textDecoration: 'none', display: 'block', marginTop: '16px' }}>
-                        View full article
-                    </Link>
-                </div>
-            </>
-        )}
-    </div>
-);
+            ) : (
+                <>
+                    <div className="fb-page-container">
+                        <FacebookPageWrapper
+                            fbPageUrl="https://www.facebook.com/OldTownShamrocks/"
+                            tabs="timeline"
+                            width={String(containerWidth)}
+                            height="700"
+                        />
+                    </div>
+                    <div style={{ maxWidth: '800px', margin: '32px auto', backgroundColor: '#000', padding: '16px' }}>
+                        <h2 style={{ color: '#ffffff', marginBottom: '16px' }}>ARTICLES</h2>
+                        <ExpandableNewsArticle
+                            key={articleData.id}
+                            id={articleData.id}
+                            title={articleData.title}
+                            date={articleData.date}
+                            content={articleData.content}
+                            language="fi"
+                            images={articleData.images}
+                            isExpanded={expandedArticleId === articleData.id}
+                            onExpand={handleExpandArticle}
+                        />
+                    </div>
+                </>
+            )}
+        </div>
+    );
 };
 
 export default News;

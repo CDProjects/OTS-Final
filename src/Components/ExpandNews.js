@@ -7,6 +7,7 @@ import {
   Instagram,
   Share2,
 } from "lucide-react";
+import { Helmet } from "react-helmet";
 import "./ExpandNews.css";
 
 const ExpandableNewsArticle = ({
@@ -16,14 +17,17 @@ const ExpandableNewsArticle = ({
   content,
   language,
   images,
+  isExpanded,
+  onExpand,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
   const [truncatedTitle, setTruncatedTitle] = useState(title);
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
   const titleRef = useRef(null);
   const containerRef = useRef(null);
 
-  const toggleExpand = () => setIsExpanded(!isExpanded);
+  const toggleExpand = () => {
+    onExpand(id);
+  };
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -81,19 +85,19 @@ const ExpandableNewsArticle = ({
   };
 
   const shareOnFacebook = () => {
-    const articleUrl = encodeURIComponent(`https://shamrocks.fi/#/news/${id}`);
+    const articleUrl = encodeURIComponent(`${window.location.origin}/news/${id}`);
     const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${articleUrl}`;
     window.open(shareUrl, 'FacebookShare', 'width=626,height=436');
   };
 
-const shareOnTwitter = () => {
+  const shareOnTwitter = () => {
     const url = encodeURIComponent(`${window.location.origin}/news/${id}`);
     const text = encodeURIComponent(title);
     window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
-};
+  };
 
   const shareOnInstagram = () => {
-    const message = `Check out this article: ${title}\n\n${window.location.href}`;
+    const message = `Check out this article: ${title}\n\n${window.location.origin}/news/${id}`;
     copyToClipboard(message);
     alert(
       "Link and title copied to clipboard. You can now paste this into your Instagram post."
@@ -102,19 +106,19 @@ const shareOnTwitter = () => {
 
   const handleShare = async () => {
     if (navigator.share) {
-        try {
-            await navigator.share({
-                title: title,
-                text: content.substring(0, 100) + '...',
-                url: `${window.location.origin}/news/${id}`,
-            });
-        } catch (error) {
-            console.error('Error sharing:', error);
-        }
+      try {
+        await navigator.share({
+          title: title,
+          text: content.substring(0, 100) + '...',
+          url: `${window.location.origin}/news/${id}`,
+        });
+      } catch (error) {
+        console.error('Error sharing:', error);
+      }
     } else {
-        copyToClipboard(`${window.location.origin}/news/${id}`);
+      copyToClipboard(`${window.location.origin}/news/${id}`);
     }
-};
+  };
 
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text).then(() => {
@@ -128,6 +132,13 @@ const shareOnTwitter = () => {
       className={`expandable-article ${isExpanded ? "expanded" : ""}`}
       ref={containerRef}
     >
+      <Helmet>
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={content.substring(0, 200) + '...'} />
+        <meta property="og:image" content={images[0].src} />
+        <meta property="og:url" content={`${window.location.origin}/news/${id}`} />
+        <meta property="og:type" content="article" />
+      </Helmet>
       <div className="article-header" onClick={toggleExpand}>
         <div className="title-section">
           <div className="icon">
