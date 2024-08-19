@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import './News.css';
 import FacebookPageWrapper from './FacebookPageWrapper';
@@ -11,13 +11,31 @@ const News = () => {
     const [containerWidth, setContainerWidth] = useState(500);
     const [expandedArticleId, setExpandedArticleId] = useState(null);
     const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        // Check for article ID in URL parameters
+        // Check for article ID and 'from' parameter in URL
         const searchParams = new URLSearchParams(location.search);
         const articleId = searchParams.get('article');
+        const fromShare = searchParams.get('from') === 'share';
+
         if (articleId) {
             setExpandedArticleId(articleId);
+        }
+
+        if (fromShare) {
+            // If coming from a share, expand the article and scroll to it
+            setExpandedArticleId('shamrocks-rugby-2024'); // or use articleId if you have multiple articles
+            setTimeout(() => {
+                const articleElement = document.getElementById('shamrocks-rugby-2024');
+                if (articleElement) {
+                    articleElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100);
+
+            // Remove the 'from' parameter from the URL
+            searchParams.delete('from');
+            navigate(location.pathname + '?' + searchParams.toString(), { replace: true });
         }
 
         const timer = setTimeout(() => {
@@ -36,7 +54,7 @@ const News = () => {
             clearTimeout(timer);
             window.removeEventListener('resize', handleResize);
         };
-    }, [location]);
+    }, [location, navigate]);
 
     useEffect(() => {
         if (!isLoading && window.FB) {
