@@ -1,7 +1,11 @@
+import image1 from "../Images/Ale_running.png";
+import image2 from "../Images/Petu_run.png";
+
 export const articleData = {
-    title: "Shamrocksilla menee erinomaisesti, ja joukkue taistelee Rugbyn SM-kullasta tänä vuonna.",
-    date: "2024-08-19", // Update this to the actual publication date
-    content: `Old Town Shamrocks matkusti viikonloppuna Tampereelle pelaamaan
+  title:
+    "Shamrocksilla menee erinomaisesti, ja joukkue taistelee Rugbyn SM-kullasta tänä vuonna.",
+  date: "2024-08-19", // Update this to the actual publication date
+  content: `Old Town Shamrocks matkusti viikonloppuna Tampereelle pelaamaan
           erittäin tärkeän ottelun Rugbyn SM-sarjassa. Tampere Rugby Club
           aloitti pelin vahvasti, mutta OTS osoitti jälleen kerran sinnikkyyttä
           ja päättäväisyyttä. Shamrocks käänsi ottelun edukseen toisella
@@ -121,5 +125,9 @@ export const articleData = {
           played on September 28th in Leppävaara, Espoo. In addition to the
           playoffs and the women’s and men’s Finnish Championship finals,
           Shamrocks’ U8 and U13 juniors will also be playing on finals day.
-        `
+        `,
+  images: [
+    { src: image1, alt: "Ale only the lonely" },
+    { src: image2, alt: "Petu running hard" },
+  ],
 };
