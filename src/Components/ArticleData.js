@@ -3,6 +3,7 @@ import image2 from "../Images/Petu_run.png";
 import image3 from "../Images/Ale_running.png";
 
 export const articleData = {
+  id: "shamrocks-rugby-2024",
   title:
     "Shamrocksilla menee erinomaisesti, ja joukkue taistelee Rugbyn SM-kullasta tänä vuonna.",
   date: "2024-08-19", // Update this to the actual publication date
