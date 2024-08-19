@@ -58,6 +58,7 @@ const News = () => {
                             date={articleData.date}
                             content={articleData.content}
                             language="fi"
+                            images={articleData.images}
                         />
                     </div>
                 </>
