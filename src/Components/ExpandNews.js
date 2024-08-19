@@ -63,7 +63,7 @@ const ExpandableNewsArticle = ({ id, title, date, content, language, images }) =
   };
 
   const shareOnFacebook = () => {
-    const articleUrl = encodeURIComponent(`${window.location.origin}/news/${id}`);
+    const articleUrl = encodeURIComponent(`${window.location.origin}/news?article=${id}`);
     const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${articleUrl}`;
     
     if (process.env.NODE_ENV === 'production') {

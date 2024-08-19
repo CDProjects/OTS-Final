@@ -45,19 +45,16 @@ const News = () => {
     }, [isLoading, containerWidth]);
 
     const getMetaTags = () => {
-        if (expandedArticleId === articleData.id) {
-            return (
-                <Helmet>
-                    <title>{articleData.title}</title>
-                    <meta property="og:title" content={articleData.title} />
-                    <meta property="og:description" content={articleData.content.slice(0, 200) + '...'} />
-                    <meta property="og:image" content={articleData.images[0].src} />
-                    <meta property="og:url" content={`${window.location.origin}/news/${articleData.id}`} />
-                    <meta property="og:type" content="article" />
-                </Helmet>
-            );
-        }
-        return null;
+        return (
+            <Helmet>
+                <title>{articleData.title}</title>
+                <meta property="og:title" content={articleData.title} />
+                <meta property="og:description" content={articleData.content.slice(0, 200) + '...'} />
+                <meta property="og:image" content={`${window.location.origin}${articleData.images[1].src}`} />
+                <meta property="og:url" content={`${window.location.origin}/news?article=${articleData.id}`} />
+                <meta property="og:type" content="article" />
+            </Helmet>
+        );
     };
 
     return (
