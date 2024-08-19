@@ -5,6 +5,7 @@ import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import Spinner from './Components/Spinner';
 
+const Article = lazy(() => import('./Components/Article'));
 const Home = lazy(() => import('./Components/Home'));
 const News = lazy(() => import('./Components/News'));
 const Team = lazy(() => import('./Components/Team'));
@@ -48,6 +49,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/news" element={<News />} />
+              <Route path="/news/:articleId" element={<Article />} />
               <Route path="/team" element={<Team />} />
               <Route path="/training" element={<Training />} />
               <Route path="/juniors" element={<Juniors />} />
