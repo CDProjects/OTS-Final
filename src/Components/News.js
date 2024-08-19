@@ -67,26 +67,18 @@ const News = () => {
   }, [isLoading, containerWidth]);
 
   const getMetaTags = () => {
+    const fullImageUrl = window.location.origin + articleData.images[0].src;
     return (
-      <Helmet>
-        <title>{articleData.title}</title>
-        <meta property="og:title" content={articleData.title} />
-        <meta
-          property="og:description"
-          content={articleData.content.slice(0, 200) + "..."}
-        />
-        <meta
-          property="og:image"
-          content={`https://shamrocks.fi${articleData.images[0].src}`}
-        />
-        <meta
-          property="og:url"
-          content={`https://shamrocks.fi/news?article=${articleData.id}`}
-        />
-        <meta property="og:type" content="article" />
-      </Helmet>
+        <Helmet>
+            <title>{articleData.title}</title>
+            <meta property="og:title" content={articleData.title} />
+            <meta property="og:description" content={articleData.content.slice(0, 200) + '...'} />
+            <meta property="og:image" content={fullImageUrl} />
+            <meta property="og:url" content={`${window.location.origin}/news?article=${articleData.id}`} />
+            <meta property="og:type" content="article" />
+        </Helmet>
     );
-  };
+};
 
   return (
     <div className="news-section">
