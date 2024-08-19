@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './News.css';
 import FacebookPageWrapper from './FacebookPageWrapper';
 import ExpandableNewsArticle from './ExpandNews';
-
-// Import the article data directly, not the component
 import { articleData } from './ArticleData';
 
 const News = () => {
@@ -53,7 +51,8 @@ const News = () => {
                             height="700"
                         />
                     </div>
-                    <div className="max-w-3xl mx-auto mt-8">
+                    <div style={{ maxWidth: '800px', margin: '32px auto', backgroundColor: '#000', padding: '16px' }}>
+                        <h2 style={{ color: '#ffffff', marginBottom: '16px' }}>Articles</h2>
                         <ExpandableNewsArticle
                             title={articleData.title}
                             date={articleData.date}
