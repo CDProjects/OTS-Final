@@ -66,15 +66,15 @@ const ExpandableNewsArticle = ({ title, date, content, language, images }) => {
     const url = encodeURIComponent(window.location.href);
     const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
     
-    // For local testing
-    if (process.env.NODE_ENV === 'production') {
-      console.log('Facebook share URL (for testing):', shareUrl);
-      alert('In production, this would open a Facebook share dialog. For local testing, check the console for the share URL.');
-    } else {
-      // For production
-      window.open(shareUrl, 'FacebookShare', 'width=626,height=436');
-    }
-  };
+     // For production
+     if (process.env.NODE_ENV === 'production') {
+        window.open(shareUrl, 'FacebookShare', 'width=626,height=436');
+      } else {
+        // For local testing
+        console.log('Facebook share URL (for testing):', shareUrl);
+        alert('In development, this would open a Facebook share dialog. For local testing, check the console for the share URL.');
+      }
+    };
 
 
   const shareOnTwitter = () => {
