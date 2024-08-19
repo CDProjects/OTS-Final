@@ -26,7 +26,43 @@ const Article = () => {
         varteenotettava voima. Joukkue on kerännyt 24 pistettä. Warriors Rugby
         club on ainoa joukkue joka on voittanut Shamrocksin. Shamrocksin
         tasainen suorittaminen on asettanut joukkueen loistavaan asemaan kauden
-        loppusuoraa ajatellen.
+        loppusuoraa ajatellen. Seuraavat kolme ottelua ovat ratkaisevia
+        pudotuspelien kannalta. Ensin OTS matkustaa Tallinnaan kohtaamaan
+        Kalevin, sitten edessä on vieraspeli Turkua vastaan. Kausi päättyy
+        kotiotteluun Kalevia vastaan. Toisen sijan varmistaminen sarjataulukossa
+        on OTS:lle äärimmäisen tärkeää, sillä se tarkoittaisi kotivälierää
+        sarjassa kolmanneksi sijoittuvaa joukkuetta vastaan. Shamrocks ymmärtää
+        kotiedun merkityksen, erityisesti korkeiden panosten välieräottelussa,
+        ja joukkue on päättänyt napata tuon paikan. Samaan aikaan sarjan
+        voittaja etenee suoraan finaaliin. 
+        <br />
+        <br />
+        Tämän kauden menestyksen takana ovat
+        valmentajat Marko Sallert ja Linus Backman, jotka ovat onnistuneet
+        luomaan joukkueelle yhtenäisen ja ennen kaikkea kurinalaisen pelitavan.
+        Heidän johdollaan Shamrocks on kehittynyt kauden aikana ja pystynyt
+        säilyttämään keskittymisensä ja suorituskykynsä kovissakin paikoissa.
+        <br />
+        <br />
+        Tämän vuoden finaalipäivä järjestetään Espoossa, ja se lähestyy kovaa
+        vauhtia. Shamrocksin katse on tiukasti suunnattu tasaisen suoritustason
+        ylläpitämiseen, sillä se on avainasemassa kauden vahvassa päätöksessä.
+        Kotivälierän varmistamiseksi jokaisella ottelulla on merkitystä, ja
+        joukkue valmistautuu antamaan kaikkensa tulevissa koitoksissa. Kausi
+        lähestyy loppuaan, ja OTS-faneilla on paljon syytä olla innoissaan.
+        Joukkue on vahvassa asemassa, ja muutamalla hyvällä suorituksella
+        Shamrocks voi olla kotivälierässä ja taistelemassa mestaruudesta. Edessä
+        on haastava tie, mutta Shamrocks on jo osoittanut, että sillä on
+        tarvittava päättäväisyys ja kurinalaisuus selvitäkseen mistä tahansa
+        esteestä. Kaikki katseet kohdistuvat tuleviin otteluihin, kun OTS jatkaa
+        matkaansa kohti mestaruutta. 
+        <br />
+        <br />
+        Joukkue matkustaa lauantaina Tallinnaan
+        pelaamaan Kalevia vastaan. Yksikin piste tuosta ottelusta varmistaisi
+        paikan välierässä 21.9. SM finaalit pelataan 28.9 Espoon Leppävaarassa.
+        Pudotuskarsintojen,sekä naisten ja miesten SM-finaalien lisäksi
+        finaalipäivänä pelaa myös Shamrocksin U8 ja U13 juniorit.
       </p>
 
       {/* Add the rest of the Finnish text here */}
