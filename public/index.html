@@ -2,35 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/OTS Logo black.jpg" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Old Town Shamrocks Rugby Club official website"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/OTS Logo black.jpg" />
-    <link rel="manifest" href="%PUBLIC_URL%/OTS Logo black.jpg" />
-    <title>Old Town Shamrocks Rugby Club</title>
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>Old Town Shamrocks Rugby</title>
+    <!-- Add these Open Graph meta tags -->
+    <meta property="og:title" content="Old Town Shamrocks Rugby" />
+    <meta property="og:description" content="Latest news and updates from Old Town Shamrocks Rugby Club" />
+    <meta property="og:image" content="https://shamrocks.fi/og-image.jpg" />
+    <meta property="og:url" content="https://shamrocks.fi" />
+    <meta property="og:type" content="website" />
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <div id="fb-root"></div>
-    <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // MIT License
-      // https://github.com/rafgraph/spa-github-pages
-      (function(l) {
-        if (l.search[1] === '/' ) {
-          var decoded = l.search.slice(1).split('&').map(function(s) { 
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
-          );
-        }
-      }(window.location))
-    </script>
+    <!-- Your bundled app script -->
+    <script src="/static/js/main.HASH.js"></script>
   </body>
 </html>
