@@ -5,7 +5,7 @@ import Article from './Article';
 
 const News = () => {
     const [isLoading, setIsLoading] = useState(true);
-    const [containerWidth, setContainerWidth] = useState(500); // Default width
+    const [containerWidth, setContainerWidth] = useState(500);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -13,12 +13,12 @@ const News = () => {
         }, 3000);
 
         const handleResize = () => {
-            const width = Math.min(500, window.innerWidth - 40); // 20px padding on each side
+            const width = Math.min(500, window.innerWidth - 40);
             setContainerWidth(width);
         };
 
         window.addEventListener('resize', handleResize);
-        handleResize(); // Call once to set initial size
+        handleResize();
 
         return () => {
             clearTimeout(timer);
