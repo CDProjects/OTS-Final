@@ -60,13 +60,18 @@ const News = () => {
   }, [isLoading, containerWidth]);
 
   const getMetaTags = () => {
+    const currentArticle = articleData; // Assume we're always showing the latest article
+    const articleUrl = `${window.location.origin}/news/${currentArticle.id}`;
+    
     return (
         <Helmet>
-            <title>Shamrocks | NEWS</title>
-            <meta property="og:title" content="Shamrocks News" />
-            <meta property="og:description" content="Latest news from Old Town Shamrocks Rugby Club" />
-            <meta property="og:url" content={`${window.location.origin}/news`} />
-            <meta property="og:type" content="website" />
+            <title>{currentArticle.title} | Shamrocks News</title>
+            <meta property="og:title" content={currentArticle.title} />
+            <meta property="og:description" content={currentArticle.content.substring(0, 200) + '...'} />
+            <meta property="og:url" content={articleUrl} />
+            <meta property="og:type" content="article" />
+            <meta property="og:image" content={currentArticle.images[0].src} />
+            <meta property="og:image:alt" content={currentArticle.images[0].alt} />
         </Helmet>
     );
 };
