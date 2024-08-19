@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ChevronRight, ChevronDown, Facebook, Twitter, Share } from 'lucide-react';
+import { ChevronRight, ChevronDown, Facebook, Twitter, Instagram, Share2 } from 'lucide-react';
 import './ExpandNews.css';
 
 const ExpandableNewsArticle = ({ title, date, content, language, images }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [truncatedTitle, setTruncatedTitle] = useState(title);
+  const [showCopiedMessage, setShowCopiedMessage] = useState(false);
   const titleRef = useRef(null);
   const containerRef = useRef(null);
 
@@ -20,7 +21,7 @@ const ExpandableNewsArticle = ({ title, date, content, language, images }) => {
       const titleElement = titleRef.current;
       const containerElement = containerRef.current;
       if (titleElement && containerElement) {
-        const maxWidth = containerElement.offsetWidth - 150; // Adjust for icon and share buttons
+        const maxWidth = containerElement.offsetWidth - 150;
         let text = title;
         titleElement.textContent = text;
         
@@ -45,7 +46,6 @@ const ExpandableNewsArticle = ({ title, date, content, language, images }) => {
     contentParagraphs.forEach((paragraph, index) => {
       result.push(<p key={`p-${index}`}>{paragraph}</p>);
       
-      // Insert an image after every 2 paragraphs, if available
       if (images && images[Math.floor(index / 2)] && (index + 1) % 2 === 0) {
         const image = images[Math.floor(index / 2)];
         result.push(
@@ -62,16 +62,62 @@ const ExpandableNewsArticle = ({ title, date, content, language, images }) => {
     return result;
   };
 
+  const shareOnFacebook = () => {
+    const url = encodeURIComponent(window.location.href);
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+    
+    // For local testing
+    if (process.env.NODE_ENV === 'production') {
+      console.log('Facebook share URL (for testing):', shareUrl);
+      alert('In production, this would open a Facebook share dialog. For local testing, check the console for the share URL.');
+    } else {
+      // For production
+      window.open(shareUrl, 'FacebookShare', 'width=626,height=436');
+    }
+  };
+
+
+  const shareOnTwitter = () => {
+    const url = encodeURIComponent(window.location.href);
+    const text = encodeURIComponent(title);
+    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+  };
+
+  const shareOnInstagram = () => {
+    const message = `Check out this article: ${title}\n\n${window.location.href}`;
+    copyToClipboard(message);
+    alert("Link and title copied to clipboard. You can now paste this into your Instagram post.");
+  };
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: title,
+          text: content.substring(0, 100) + '...',
+          url: window.location.href,
+        });
+      } catch (error) {
+        console.error('Error sharing:', error);
+      }
+    } else {
+      copyToClipboard(window.location.href);
+    }
+  };
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setShowCopiedMessage(true);
+      setTimeout(() => setShowCopiedMessage(false), 2000);
+    });
+  };
+
   return (
     <div className={`expandable-article ${isExpanded ? 'expanded' : ''}`} ref={containerRef}>
       <div className="article-header" onClick={toggleExpand}>
         <div className="title-section">
           <div className="icon">
-            {isExpanded ? (
-              <ChevronDown size={24} />
-            ) : (
-              <ChevronRight size={24} />
-            )}
+            {isExpanded ? <ChevronDown size={24} /> : <ChevronRight size={24} />}
           </div>
           <div className="text-container">
             <h2 className="title" ref={titleRef}>{truncatedTitle}</h2>
@@ -79,9 +125,11 @@ const ExpandableNewsArticle = ({ title, date, content, language, images }) => {
           </div>
         </div>
         <div className="share-icons">
-          <Facebook size={20} />
-          <Twitter size={20} />
-          <Share size={20} />
+          <Facebook size={20} onClick={(e) => { e.stopPropagation(); shareOnFacebook(); }} />
+          <Twitter size={20} onClick={(e) => { e.stopPropagation(); shareOnTwitter(); }} />
+          <Instagram size={20} onClick={(e) => { e.stopPropagation(); shareOnInstagram(); }} />
+          <Share2 size={20} onClick={(e) => { e.stopPropagation(); handleShare(); }} />
+          {showCopiedMessage && <span className="copied-message">Link copied!</span>}
         </div>
       </div>
       {isExpanded && (
