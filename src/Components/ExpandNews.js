@@ -81,23 +81,16 @@ const ExpandableNewsArticle = ({
   };
 
   const shareOnFacebook = () => {
-    const articleUrl = encodeURIComponent(
-      `https://shamrocks.fi/news?article=${id}&from=share`
-    );
+    const articleUrl = encodeURIComponent(`https://shamrocks.fi/news/${id}`);
     const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${articleUrl}`;
-    window.open(shareUrl, "FacebookShare", "width=626,height=436");
+    window.open(shareUrl, 'FacebookShare', 'width=626,height=436');
   };
 
-  const shareOnTwitter = () => {
-    const url = encodeURIComponent(
-      `https://shamrocks.fi/news?article=${id}&from=share`
-    );
+const shareOnTwitter = () => {
+    const url = encodeURIComponent(`${window.location.origin}/news/${id}`);
     const text = encodeURIComponent(title);
-    window.open(
-      `https://twitter.com/intent/tweet?url=${url}&text=${text}`,
-      "_blank"
-    );
-  };
+    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+};
 
   const shareOnInstagram = () => {
     const message = `Check out this article: ${title}\n\n${window.location.href}`;
@@ -109,19 +102,19 @@ const ExpandableNewsArticle = ({
 
   const handleShare = async () => {
     if (navigator.share) {
-      try {
-        await navigator.share({
-          title: title,
-          text: content.substring(0, 100) + "...",
-          url: `https://shamrocks.fi/news?article=${id}&from=share`,
-        });
-      } catch (error) {
-        console.error("Error sharing:", error);
-      }
+        try {
+            await navigator.share({
+                title: title,
+                text: content.substring(0, 100) + '...',
+                url: `${window.location.origin}/news/${id}`,
+            });
+        } catch (error) {
+            console.error('Error sharing:', error);
+        }
     } else {
-      copyToClipboard(`https://shamrocks.fi/news?article=${id}&from=share`);
+        copyToClipboard(`${window.location.origin}/news/${id}`);
     }
-  };
+};
 
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text).then(() => {
