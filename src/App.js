@@ -1,11 +1,10 @@
 import React, { Suspense, lazy, useEffect } from 'react';
-import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import ScrollToTop from './Components/ScrollToTop';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import Spinner from './Components/Spinner';
 
-const Article = lazy(() => import('./Components/Article'));
 const Home = lazy(() => import('./Components/Home'));
 const News = lazy(() => import('./Components/News'));
 const Team = lazy(() => import('./Components/Team'));
@@ -17,7 +16,6 @@ const Contact = lazy(() => import('./Components/Contact'));
 
 function TitleUpdater() {
   const location = useLocation();
-
   useEffect(() => {
     const sectionMap = {
       '/': 'HOME',
@@ -29,17 +27,15 @@ function TitleUpdater() {
       '/media-recruitment': 'MEDIA & RECRUITMENT',
       '/contact': 'CONTACT'
     };
-
     const section = sectionMap[location.pathname] || 'HOME';
     document.title = `Shamrocks | ${section}`;
   }, [location]);
-
   return null;
 }
 
 function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <ScrollToTop />
       <TitleUpdater />
       <div className="App">
@@ -49,7 +45,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/news" element={<News />} />
-              <Route path="/news/:articleId" element={<Article />} />
+              <Route path="/news/:articleId" element={<News />} />
               <Route path="/team" element={<Team />} />
               <Route path="/training" element={<Training />} />
               <Route path="/juniors" element={<Juniors />} />
