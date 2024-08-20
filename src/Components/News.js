@@ -15,19 +15,14 @@ const News = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Set expanded article based on URL parameter
         const searchParams = new URLSearchParams(location.search);
         const articleId = searchParams.get('article');
-        if (articleId) {
-            setExpandedArticleId(articleId);
-        }
+        setExpandedArticleId(articleId || null);
 
-        // Simulate loading delay
         const timer = setTimeout(() => {
             setIsLoading(false);
         }, 3000);
 
-        // Handle container width resize
         const handleResize = () => {
             const width = Math.min(500, window.innerWidth - 40);
             setContainerWidth(width);
@@ -42,15 +37,20 @@ const News = () => {
     }, [location]);
 
     useEffect(() => {
-        // Parse Facebook XFBML when loading is complete
         if (!isLoading && window.FB) {
             window.FB.XFBML.parse();
         }
     }, [isLoading, containerWidth]);
 
     const handleExpandArticle = (articleId) => {
-        setExpandedArticleId(prevId => prevId === articleId ? null : articleId);
-        navigate(`/news?article=${articleId}`, { replace: true });
+        const newExpandedId = expandedArticleId === articleId ? null : articleId;
+        setExpandedArticleId(newExpandedId);
+        
+        if (newExpandedId) {
+            navigate(`/news?article=${newExpandedId}`, { replace: true });
+        } else {
+            navigate('/news', { replace: true });
+        }
     };
 
     const getMetaTags = () => {

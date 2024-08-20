@@ -52,45 +52,18 @@ const ExpandableNewsArticle = ({
   }, [title]);
 
   useEffect(() => {
-    const loadShareButtons = () => {
-      if (window.__sharethis__ && shareButtonsRef.current) {
-        window.__sharethis__.load('inline-share-buttons', {
-          container: shareButtonsRef.current,
-          alignment: 'center',
-          networks: ['facebook', 'twitter', 'email', 'sms', 'sharethis']
-        });
-      }
-    };
-
-    // Wait for the DOM to be fully loaded
-    if (document.readyState === 'complete') {
-      loadShareButtons();
-    } else {
-      window.addEventListener('load', loadShareButtons);
-      return () => window.removeEventListener('load', loadShareButtons);
+    if (isExpanded && window.__sharethis__) {
+      window.__sharethis__.load('inline-share-buttons', {
+        alignment: 'center',
+        id: `share-buttons-${id}`, // Unique id for each article
+        enabled: true,
+        font_size: 11,
+        padding: 8,
+        radius: 20,
+        networks: ['facebook', 'twitter', 'email', 'sms', 'sharethis']
+      });
     }
-  }, []);
-
-  useEffect(() => {
-    const loadShareButtons = () => {
-      if (window.__sharethis__ && shareButtonsRef.current) {
-        setTimeout(() => {
-          window.__sharethis__.load('inline-share-buttons', {
-            container: shareButtonsRef.current,
-            alignment: 'center',
-            networks: ['facebook', 'twitter', 'email', 'sms', 'sharethis']
-          });
-        }, 100); // Small delay to ensure DOM is ready
-      }
-    };
-  
-    if (document.readyState === 'complete') {
-      loadShareButtons();
-    } else {
-      window.addEventListener('load', loadShareButtons);
-      return () => window.removeEventListener('load', loadShareButtons);
-    }
-  }, [isExpanded]); // Re-run when isExpanded changes
+  }, [isExpanded, id]);
 
   const renderContent = () => {
     const contentParagraphs = content.split("\n\n");
@@ -124,8 +97,8 @@ const ExpandableNewsArticle = ({
         <meta property="og:url" content={`${window.location.origin}/news/${id}`} />
         <meta property="og:type" content="article" />
       </Helmet>
-      <div className="article-header" onClick={toggleExpand}>
-        <div className="title-section">
+      <div className="article-header">
+        <div className="title-section" onClick={toggleExpand}>
           <div className="icon">
             {isExpanded ? (
               <ChevronDown size={24} />
@@ -140,12 +113,22 @@ const ExpandableNewsArticle = ({
             <span className="date">{formatDate(date)}</span>
           </div>
         </div>
-        <div className="share-icons" ref={shareButtonsRef}></div>
+        {isExpanded && (
+          <div className="share-icons">
+            <div 
+              className="sharethis-inline-share-buttons" 
+              id={`share-buttons-${id}`}
+              data-url={`${window.location.origin}/news/${id}`}
+              data-title={title}
+              data-description={content.substring(0, 200) + '...'}
+              data-image={images[0].src}
+            ></div>
+          </div>
+        )}
       </div>
       {isExpanded && (
         <div className="article-content">
           {renderContent()}
-          <div ref={shareButtonsRef}></div>
         </div>
       )}
     </div>
