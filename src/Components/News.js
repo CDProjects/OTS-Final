@@ -15,21 +15,23 @@ const News = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        // Set expanded article based on URL parameter
         const searchParams = new URLSearchParams(location.search);
         const articleId = searchParams.get('article');
         if (articleId) {
             setExpandedArticleId(articleId);
         }
 
+        // Simulate loading delay
         const timer = setTimeout(() => {
             setIsLoading(false);
         }, 3000);
 
+        // Handle container width resize
         const handleResize = () => {
             const width = Math.min(500, window.innerWidth - 40);
             setContainerWidth(width);
         };
-
         window.addEventListener("resize", handleResize);
         handleResize();
 
@@ -40,27 +42,28 @@ const News = () => {
     }, [location]);
 
     useEffect(() => {
+        // Parse Facebook XFBML when loading is complete
         if (!isLoading && window.FB) {
             window.FB.XFBML.parse();
         }
     }, [isLoading, containerWidth]);
 
     const handleExpandArticle = (articleId) => {
-        setExpandedArticleId(articleId === expandedArticleId ? null : articleId);
+        setExpandedArticleId(prevId => prevId === articleId ? null : articleId);
         navigate(`/news?article=${articleId}`, { replace: true });
     };
 
     const getMetaTags = () => {
         return (
             <ErrorBoundary>
-            <Helmet>
-                <title>Shamrocks News</title>
-                <meta property="og:title" content="Shamrocks News" />
-                <meta property="og:description" content="Latest news from Shamrocks" />
-                <meta property="og:url" content={`${window.location.origin}/news`} />
-                <meta property="og:type" content="website" />
-                <meta property="og:image" content={`${window.location.origin}/path-to-default-image.jpg`} />
-            </Helmet>
+                <Helmet>
+                    <title>Shamrocks News</title>
+                    <meta property="og:title" content="Shamrocks News" />
+                    <meta property="og:description" content="Latest news from Shamrocks" />
+                    <meta property="og:url" content={`${window.location.origin}/news`} />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:image" content={`${window.location.origin}/path-to-default-image.jpg`} />
+                </Helmet>
             </ErrorBoundary>
         );
     };

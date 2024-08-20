@@ -1,12 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import {
-  ChevronRight,
-  ChevronDown,
-  Facebook,
-  Twitter,
-  Instagram,
-  Share2,
-} from "lucide-react";
+import { ChevronRight, ChevronDown } from "lucide-react";
 import { Helmet } from "react-helmet";
 import "./ExpandNews.css";
 
@@ -21,9 +14,9 @@ const ExpandableNewsArticle = ({
   onExpand,
 }) => {
   const [truncatedTitle, setTruncatedTitle] = useState(title);
-  const [showCopiedMessage, setShowCopiedMessage] = useState(false);
   const titleRef = useRef(null);
   const containerRef = useRef(null);
+  const shareButtonsRef = useRef(null);
 
   const toggleExpand = () => {
     onExpand(id);
@@ -46,28 +39,64 @@ const ExpandableNewsArticle = ({
         const maxWidth = containerElement.offsetWidth - 150;
         let text = title;
         titleElement.textContent = text;
-
         while (titleElement.offsetWidth > maxWidth && text.length > 0) {
           text = text.slice(0, -1);
           titleElement.textContent = text + "...";
         }
-
         setTruncatedTitle(titleElement.textContent);
       }
     };
-
     truncateTitle();
     window.addEventListener("resize", truncateTitle);
     return () => window.removeEventListener("resize", truncateTitle);
   }, [title]);
 
+  useEffect(() => {
+    const loadShareButtons = () => {
+      if (window.__sharethis__ && shareButtonsRef.current) {
+        window.__sharethis__.load('inline-share-buttons', {
+          container: shareButtonsRef.current,
+          alignment: 'center',
+          networks: ['facebook', 'twitter', 'email', 'sms', 'sharethis']
+        });
+      }
+    };
+
+    // Wait for the DOM to be fully loaded
+    if (document.readyState === 'complete') {
+      loadShareButtons();
+    } else {
+      window.addEventListener('load', loadShareButtons);
+      return () => window.removeEventListener('load', loadShareButtons);
+    }
+  }, []);
+
+  useEffect(() => {
+    const loadShareButtons = () => {
+      if (window.__sharethis__ && shareButtonsRef.current) {
+        setTimeout(() => {
+          window.__sharethis__.load('inline-share-buttons', {
+            container: shareButtonsRef.current,
+            alignment: 'center',
+            networks: ['facebook', 'twitter', 'email', 'sms', 'sharethis']
+          });
+        }, 100); // Small delay to ensure DOM is ready
+      }
+    };
+  
+    if (document.readyState === 'complete') {
+      loadShareButtons();
+    } else {
+      window.addEventListener('load', loadShareButtons);
+      return () => window.removeEventListener('load', loadShareButtons);
+    }
+  }, [isExpanded]); // Re-run when isExpanded changes
+
   const renderContent = () => {
     const contentParagraphs = content.split("\n\n");
     const result = [];
-
     contentParagraphs.forEach((paragraph, index) => {
       result.push(<p key={`p-${index}`}>{paragraph}</p>);
-
       if (images && images[Math.floor(index / 2)] && (index + 1) % 2 === 0) {
         const image = images[Math.floor(index / 2)];
         result.push(
@@ -80,51 +109,7 @@ const ExpandableNewsArticle = ({
         );
       }
     });
-
     return result;
-  };
-
-  const shareOnFacebook = () => {
-    const articleUrl = encodeURIComponent(`${window.location.origin}/news/${id}`);
-    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${articleUrl}`;
-    window.open(shareUrl, 'FacebookShare', 'width=626,height=436');
-  };
-
-  const shareOnTwitter = () => {
-    const url = encodeURIComponent(`${window.location.origin}/news/${id}`);
-    const text = encodeURIComponent(title);
-    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
-  };
-
-  const shareOnInstagram = () => {
-    const message = `Check out this article: ${title}\n\n${window.location.origin}/news/${id}`;
-    copyToClipboard(message);
-    alert(
-      "Link and title copied to clipboard. You can now paste this into your Instagram post."
-    );
-  };
-
-  const handleShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: title,
-          text: content.substring(0, 100) + '...',
-          url: `${window.location.origin}/news/${id}`,
-        });
-      } catch (error) {
-        console.error('Error sharing:', error);
-      }
-    } else {
-      copyToClipboard(`${window.location.origin}/news/${id}`);
-    }
-  };
-
-  const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text).then(() => {
-      setShowCopiedMessage(true);
-      setTimeout(() => setShowCopiedMessage(false), 2000);
-    });
   };
 
   return (
@@ -155,41 +140,14 @@ const ExpandableNewsArticle = ({
             <span className="date">{formatDate(date)}</span>
           </div>
         </div>
-        <div className="share-icons">
-          <Facebook
-            size={20}
-            onClick={(e) => {
-              e.stopPropagation();
-              shareOnFacebook();
-            }}
-          />
-          <Twitter
-            size={20}
-            onClick={(e) => {
-              e.stopPropagation();
-              shareOnTwitter();
-            }}
-          />
-          <Instagram
-            size={20}
-            onClick={(e) => {
-              e.stopPropagation();
-              shareOnInstagram();
-            }}
-          />
-          <Share2
-            size={20}
-            onClick={(e) => {
-              e.stopPropagation();
-              handleShare();
-            }}
-          />
-          {showCopiedMessage && (
-            <span className="copied-message">Link copied!</span>
-          )}
-        </div>
+        <div className="share-icons" ref={shareButtonsRef}></div>
       </div>
-      {isExpanded && <div className="article-content">{renderContent()}</div>}
+      {isExpanded && (
+        <div className="article-content">
+          {renderContent()}
+          <div ref={shareButtonsRef}></div>
+        </div>
+      )}
     </div>
   );
 };
