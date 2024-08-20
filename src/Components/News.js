@@ -17,23 +17,8 @@ const News = () => {
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
         const articleId = searchParams.get('article');
-        const fromShare = searchParams.get('from') === 'share';
-
         if (articleId) {
             setExpandedArticleId(articleId);
-        }
-
-        if (fromShare) {
-            setExpandedArticleId(articleId || 'shamrocks-rugby-2024');
-            setTimeout(() => {
-                const articleElement = document.getElementById(articleId || 'shamrocks-rugby-2024');
-                if (articleElement) {
-                    articleElement.scrollIntoView({ behavior: 'smooth' });
-                }
-            }, 1000);
-
-            searchParams.delete('from');
-            navigate(location.pathname + '?' + searchParams.toString(), { replace: true });
         }
 
         const timer = setTimeout(() => {
@@ -52,7 +37,7 @@ const News = () => {
             clearTimeout(timer);
             window.removeEventListener("resize", handleResize);
         };
-    }, [location, navigate]);
+    }, [location]);
 
     useEffect(() => {
         if (!isLoading && window.FB) {
@@ -66,37 +51,19 @@ const News = () => {
     };
 
     const getMetaTags = () => {
-        let currentArticle = articleData; // Assuming articleData is an object with the article details.
-    
-        const articleUrl = `${window.location.origin}/news/${currentArticle.id || 'default-id'}`;
-        const description = currentArticle.content && typeof currentArticle.content === 'string'
-            ? currentArticle.content.substring(0, 200) + '...'
-            : 'Latest news from Shamrocks';
-
-            console.log('Meta title:', String(currentArticle.title || 'Shamrocks News'));
-console.log('Meta description:', String(description));
-console.log('Meta url:', String(articleUrl));
-console.log('Meta image:', currentArticle.images && currentArticle.images[0] && String(currentArticle.images[0].src));
-        
         return (
             <ErrorBoundary>
             <Helmet>
-                <title>{String(currentArticle.title || 'Shamrocks News')} | Shamrocks News</title>
-                <meta property="og:title" content={String(currentArticle.title || 'Shamrocks News')} />
-                <meta property="og:description" content={String(description)} />
-                <meta property="og:url" content={String(articleUrl)} />
-                <meta property="og:type" content="article" />
-                {currentArticle.images && currentArticle.images[0] && (
-                    <>
-                        <meta property="og:image" content={String(currentArticle.images[0].src)} />
-                        <meta property="og:image:alt" content={String(currentArticle.images[0].alt || '')} />
-                    </>
-                )}
+                <title>Shamrocks News</title>
+                <meta property="og:title" content="Shamrocks News" />
+                <meta property="og:description" content="Latest news from Shamrocks" />
+                <meta property="og:url" content={`${window.location.origin}/news`} />
+                <meta property="og:type" content="website" />
+                <meta property="og:image" content={`${window.location.origin}/path-to-default-image.jpg`} />
             </Helmet>
             </ErrorBoundary>
         );
     };
-    
 
     return (
         <div className="news-section">

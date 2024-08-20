@@ -7,6 +7,7 @@ import Spinner from './Components/Spinner';
 
 const Home = lazy(() => import('./Components/Home'));
 const News = lazy(() => import('./Components/News'));
+const Article = lazy(() => import('./Components/Article'));
 const Team = lazy(() => import('./Components/Team'));
 const Training = lazy(() => import('./Components/Training'));
 const Juniors = lazy(() => import('./Components/Juniors'));
@@ -27,7 +28,14 @@ function TitleUpdater() {
       '/media-recruitment': 'MEDIA & RECRUITMENT',
       '/contact': 'CONTACT'
     };
-    const section = sectionMap[location.pathname] || 'HOME';
+    const pathParts = location.pathname.split('/');
+    let section = sectionMap[location.pathname] || 'HOME';
+    
+    // Special handling for article pages
+    if (pathParts[1] === 'news' && pathParts[2]) {
+      section = 'ARTICLE';
+    }
+    
     document.title = `Shamrocks | ${section}`;
   }, [location]);
   return null;
@@ -45,7 +53,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/news" element={<News />} />
-              <Route path="/news/:articleId" element={<News />} />
+              <Route path="/news/:articleId" element={<Article />} />
               <Route path="/team" element={<Team />} />
               <Route path="/training" element={<Training />} />
               <Route path="/juniors" element={<Juniors />} />
