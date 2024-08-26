@@ -8,7 +8,6 @@ const ExpandableNewsArticle = ({
   title,
   date,
   content,
-  language,
   images,
   isExpanded,
   onExpand,
