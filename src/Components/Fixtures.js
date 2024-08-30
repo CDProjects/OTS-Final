@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ErrorBoundary from './ErrorBoundary';
 import './Fixtures.css';
-import shamrocksHRC2024 from '../Images/Kalev Shamrocks 2024.jpg';
+import shamrocksHRC2024 from '../Images/Turku Shamrocks 2024.jpg';
 
 const Fixtures = () => {
   const [competitionTable, setCompetitionTable] = useState('');
@@ -47,7 +47,7 @@ const Fixtures = () => {
     { date: "20.7", teams: "HELSINKI - SHAMROCKS", score: "10 - 28" },
     { date: "3.8", teams: "WARRIORS - SHAMROCKS", score: "7 - 33" },
     { date: "17.8", teams: "TAMPERE - SHAMROCKS", score: "7 - 32" },
-    { date: "24.8", teams: "KALEV - SHAMROCKS", score: "00 - 00" },
+    { date: "24.8", teams: "KALEV - SHAMROCKS", score: "24 - 35" },
     { date: "31.8", teams: "EAGLES - SHAMROCKS", score: "00 - 00" },
     { date: "14.9", teams: "SHAMROCKS - KALEV", score: "00 - 00" },
     { date: "21.9", teams: "SEMI FINAL", score: "TBD" },
