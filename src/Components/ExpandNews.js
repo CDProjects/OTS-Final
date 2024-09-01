@@ -16,7 +16,6 @@ const ExpandableNewsArticle = ({
   const [truncatedTitle, setTruncatedTitle] = useState(title);
   const titleRef = useRef(null);
   const containerRef = useRef(null);
-  const shareButtonsRef = useRef(null);
 
   const toggleExpand = () => {
     onExpand(id);
