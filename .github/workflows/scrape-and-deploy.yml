@@ -25,8 +25,13 @@ jobs:
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        
+        # Pull latest changes from the remote branch
+        git pull origin master --rebase
+        
+        # Stage, commit, and push changes if there are any
         git add .
-        git diff --staged --quiet || (git commit -m "Update competition table" && git push)
+        git diff --staged --quiet || (git commit -m "Update competition table" && git push origin master)
 
     - name: Build React app
       run: npm run build
