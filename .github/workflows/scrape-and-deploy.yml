@@ -3,12 +3,13 @@ on:
   schedule:
     - cron: '0 21 * * 3,6,0'
   workflow_dispatch:
-
 jobs:
   scrape-and-deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
    
     - name: Use Node.js
       uses: actions/setup-node@v4
@@ -25,14 +26,33 @@ jobs:
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        
-        # Pull latest changes from the remote branch
-        git pull origin master --rebase
-        
-        # Stage, commit, and push changes if there are any
+       
+        # Fetch the latest changes from the remote
+        git fetch origin master
+       
+        # Create a new branch for our changes
+        git checkout -b temp-branch
+       
+        # Stage changes
         git add .
-        git diff --staged --quiet || (git commit -m "Update competition table" && git push origin master)
-
+       
+        # Commit if there are changes
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Update competition table"
+          
+          # Try to rebase onto master
+          if git rebase origin/master; then
+            # Force push the changes
+            git push --force origin temp-branch:master
+          else
+            echo "Rebase failed. Manual intervention may be needed."
+            git rebase --abort
+            exit 1
+          fi
+        fi
+    
     - name: Build React app
       run: npm run build
    
