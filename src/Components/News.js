@@ -6,6 +6,7 @@ import FacebookPageWrapper from "./FacebookPageWrapper";
 import ExpandableNewsArticle from "./ExpandNews";
 import { articleData } from "./ArticleData";
 import ErrorBoundary from "./ErrorBoundary";
+import semiFinalImage from "../Images/Semi Final 2024.jpg";
 
 const News = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -79,6 +80,9 @@ const News = () => {
                 </div>
             ) : (
                 <>
+                    <div className="semi-final-image-container">
+                        <img src={semiFinalImage} alt="Rugby SM Semi-Final" className="semi-final-image" />
+                    </div>
                     <div className="fb-page-container">
                         <FacebookPageWrapper
                             fbPageUrl="https://www.facebook.com/OldTownShamrocks/"

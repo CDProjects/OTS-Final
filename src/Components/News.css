@@ -21,6 +21,22 @@
   animation: spin 1s linear infinite;
 }
 
+.semi-final-image-container {
+    max-width: 100%;
+    margin: 0 auto 20px;
+    padding: 0 20px;
+}
+
+.semi-final-image {
+    width: 100%;
+    height: auto;
+    max-width: 800px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 /* Existing styles... */
 
 /* New styles for the Article component */
