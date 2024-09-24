@@ -6,7 +6,7 @@ import FacebookPageWrapper from "./FacebookPageWrapper";
 import ExpandableNewsArticle from "./ExpandNews";
 import { articleData } from "./ArticleData";
 import ErrorBoundary from "./ErrorBoundary";
-import semiFinalImage from "../Images/Semi Final 2024.jpg";
+import semiFinalImage from "../Images/GF.jpeg";
 
 const News = () => {
     const [isLoading, setIsLoading] = useState(true);
