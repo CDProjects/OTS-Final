@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/static/css/main.d5f43b5b.css",
-    "main.js": "/static/js/main.3e75015b.js",
+    "main.js": "/static/js/main.9feedb2f.js",
     "static/css/7.deb53f7e.chunk.css": "/static/css/7.deb53f7e.chunk.css",
     "static/js/7.88cbf472.chunk.js": "/static/js/7.88cbf472.chunk.js",
     "static/css/839.54b51cd5.chunk.css": "/static/css/839.54b51cd5.chunk.css",
-    "static/js/839.0499dbd0.chunk.js": "/static/js/839.0499dbd0.chunk.js",
+    "static/js/839.86c97245.chunk.js": "/static/js/839.86c97245.chunk.js",
     "static/js/973.d77563d8.chunk.js": "/static/js/973.d77563d8.chunk.js",
     "static/css/956.3ab71683.chunk.css": "/static/css/956.3ab71683.chunk.css",
     "static/js/956.c7343d76.chunk.js": "/static/js/956.c7343d76.chunk.js",
@@ -14,7 +14,7 @@
     "static/css/25.fa066e9b.chunk.css": "/static/css/25.fa066e9b.chunk.css",
     "static/js/25.6eefc123.chunk.js": "/static/js/25.6eefc123.chunk.js",
     "static/css/304.4447f349.chunk.css": "/static/css/304.4447f349.chunk.css",
-    "static/js/304.a8ab6f71.chunk.js": "/static/js/304.a8ab6f71.chunk.js",
+    "static/js/304.49d7973c.chunk.js": "/static/js/304.49d7973c.chunk.js",
     "static/css/581.39a3ea64.chunk.css": "/static/css/581.39a3ea64.chunk.css",
     "static/js/581.2c988d53.chunk.js": "/static/js/581.2c988d53.chunk.js",
     "static/css/926.c0f25f9f.chunk.css": "/static/css/926.c0f25f9f.chunk.css",
@@ -49,8 +49,8 @@
     "static/media/Recruitment 1.png": "/static/media/Recruitment 1.4856a6a0e2e4ef60006b.png",
     "static/media/IG Icon.png": "/static/media/IG Icon.ef591632f5d68d01aa4f.png",
     "static/media/Petu_run.png": "/static/media/Petu_run.dee39b6f52259460b7cc.png",
-    "static/media/Semi Final 2024.jpg": "/static/media/Semi Final 2024.04a3989b551a9015b7e2.jpg",
     "static/media/Team_2023_Tampere_3.png": "/static/media/Team_2023_Tampere_3.16ed30cef70df613d2ec.png",
+    "static/media/GF.jpeg": "/static/media/GF.14dfc06d7717d0c09064.jpeg",
     "static/media/Ale_running.png": "/static/media/Ale_running.2a992507e132ac2bf4da.png",
     "static/media/Juniors 1.png": "/static/media/Juniors 1.d25b3105799c1fdc5416.png",
     "static/media/Juniors 2.png": "/static/media/Juniors 2.012038a93eedf1114177.png",
@@ -62,11 +62,11 @@
     "static/media/Paavilainen.png": "/static/media/Paavilainen.f98ab80f314656afe93e.png",
     "index.html": "/index.html",
     "main.d5f43b5b.css.map": "/static/css/main.d5f43b5b.css.map",
-    "main.3e75015b.js.map": "/static/js/main.3e75015b.js.map",
+    "main.9feedb2f.js.map": "/static/js/main.9feedb2f.js.map",
     "7.deb53f7e.chunk.css.map": "/static/css/7.deb53f7e.chunk.css.map",
     "7.88cbf472.chunk.js.map": "/static/js/7.88cbf472.chunk.js.map",
     "839.54b51cd5.chunk.css.map": "/static/css/839.54b51cd5.chunk.css.map",
-    "839.0499dbd0.chunk.js.map": "/static/js/839.0499dbd0.chunk.js.map",
+    "839.86c97245.chunk.js.map": "/static/js/839.86c97245.chunk.js.map",
     "973.d77563d8.chunk.js.map": "/static/js/973.d77563d8.chunk.js.map",
     "956.3ab71683.chunk.css.map": "/static/css/956.3ab71683.chunk.css.map",
     "956.c7343d76.chunk.js.map": "/static/js/956.c7343d76.chunk.js.map",
@@ -75,7 +75,7 @@
     "25.fa066e9b.chunk.css.map": "/static/css/25.fa066e9b.chunk.css.map",
     "25.6eefc123.chunk.js.map": "/static/js/25.6eefc123.chunk.js.map",
     "304.4447f349.chunk.css.map": "/static/css/304.4447f349.chunk.css.map",
-    "304.a8ab6f71.chunk.js.map": "/static/js/304.a8ab6f71.chunk.js.map",
+    "304.49d7973c.chunk.js.map": "/static/js/304.49d7973c.chunk.js.map",
     "581.39a3ea64.chunk.css.map": "/static/css/581.39a3ea64.chunk.css.map",
     "581.2c988d53.chunk.js.map": "/static/js/581.2c988d53.chunk.js.map",
     "926.c0f25f9f.chunk.css.map": "/static/css/926.c0f25f9f.chunk.css.map",
@@ -88,6 +88,6 @@
   },
   "entrypoints": [
     "static/css/main.d5f43b5b.css",
-    "static/js/main.3e75015b.js"
+    "static/js/main.9feedb2f.js"
   ]
 }
