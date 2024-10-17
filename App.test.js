@@ -1,16 +1,10 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 
 // Mock the ScrollToTop component
 jest.mock('./Components/ScrollToTop', () => () => null);
-
-// Mock the lazy-loaded components
-jest.mock('./Components/Home', () => () => <div>Home Component</div>);
-jest.mock('./Components/News', () => () => <div>News Component</div>);
-jest.mock('./Components/Team', () => () => <div>Team Component</div>);
-// ... mock other components as needed
 
 describe('App Component', () => {
   beforeAll(() => {
@@ -18,39 +12,46 @@ describe('App Component', () => {
     window.scrollTo = jest.fn();
   });
 
-  test('renders navigation', async () => {
+  test('renders navigation links', () => {
     render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
     
-    await waitFor(() => {
-      expect(screen.getByRole('navigation')).toBeInTheDocument();
-    });
+    expect(screen.getByText('HOME')).toBeInTheDocument();
+    expect(screen.getByText('NEWS')).toBeInTheDocument();
+    expect(screen.getByText('TEAM')).toBeInTheDocument();
+    expect(screen.getByText('TRAINING')).toBeInTheDocument();
+    expect(screen.getByText('JUNIORS')).toBeInTheDocument();
+    expect(screen.getByText('RESULTS & FIXTURES')).toBeInTheDocument();
+    expect(screen.getByText('MEDIA & RECRUITMENT')).toBeInTheDocument();
+    expect(screen.getByText('CONTACT')).toBeInTheDocument();
   });
 
-  test('renders footer', async () => {
+  test('renders club name and subtitle', () => {
     render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
     
-    await waitFor(() => {
-      expect(screen.getByRole('contentinfo')).toBeInTheDocument();
-    });
+    expect(screen.getByText('Old Town Shamrocks')).toBeInTheDocument();
+    expect(screen.getByText('Porvoo Rugby Club')).toBeInTheDocument();
   });
 
-  test('renders home component on default route', async () => {
+  test('renders footer with sponsor information', () => {
     render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter>
         <App />
       </MemoryRouter>
     );
     
-    await waitFor(() => {
-      expect(screen.getByText('Home Component')).toBeInTheDocument();
-    });
+    expect(screen.getByText('Proudly sponsored by:')).toBeInTheDocument();
+    expect(screen.getByAltText('Lindos')).toBeInTheDocument();
+    expect(screen.getByAltText('RockTape')).toBeInTheDocument();
+    expect(screen.getByAltText('Paavilainen')).toBeInTheDocument();
+    expect(screen.getByAltText('Uudenmaan')).toBeInTheDocument();
+    expect(screen.getByAltText('Artomika')).toBeInTheDocument();
   });
 });
