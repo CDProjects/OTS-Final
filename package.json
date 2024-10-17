@@ -4,9 +4,6 @@
   "homepage": "https://shamrocks.fi",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.2",
     "cheerio": "^1.0.0-rc.12",
     "leaflet": "^1.9.4",
@@ -53,7 +50,9 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@craco/craco": "^7.1.0",
-    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.5.2",
     "autoprefixer": "^10.4.20",
     "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.10",
@@ -64,6 +63,7 @@
     "imagemin-mozjpeg": "^10.0.0",
     "imagemin-pngquant": "^10.0.0",
     "imagemin-webpack-plugin": "^2.4.2",
+    "jest": "^27.5.1",
     "postcss": "^8.4.41",
     "source-map-explorer": "^2.5.3",
     "tailwindcss": "^3.4.10",
