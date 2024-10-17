@@ -51,7 +51,7 @@ const Fixtures = () => {
     { date: "31.8", teams: "EAGLES - SHAMROCKS", score: "14 - 34" },
     { date: "14.9", teams: "SHAMROCKS - KALEV", score: "27 - 32" },
     { date: "21.9", teams: "SHAMROCKS - HELSINKI", score: "21 - 17" },
-    { date: "28.9", teams: "CHAMPIONSHIP FINAL", score: "TBD" },
+    { date: "28.9", teams: "WARRIORS - SHAMROCKS", score: "17 - 15" },
   ];
 
   return (
