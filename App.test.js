@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, act } from '@testing-library/react';
 import App from './App';
 
 // Mock the window.scrollTo function to avoid errors in the test environment
@@ -8,9 +8,11 @@ beforeAll(() => {
 });
 
 test('renders team member image', async () => {
-  // Render the App component
-  render(<App />);
-  
+  // Use act to manually handle Suspense
+  await act(async () => {
+    render(<App />);
+  });
+
   // Wait for the image to load (due to lazy loading)
   const imageElement = await waitFor(() => screen.getByAltText(/Akseli/i));
 
