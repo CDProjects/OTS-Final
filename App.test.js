@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import App from './App';
-import { act } from 'react-dom/test-utils';
 
 // Mock the window.scrollTo function to avoid errors in the test environment
 beforeAll(() => {
@@ -9,12 +8,10 @@ beforeAll(() => {
 });
 
 test('renders team member image', async () => {
-  // Use act to ensure suspended resources are resolved
-  await act(async () => {
-    render(<App />);
-  });
-
-  // Look for an image with the alt text "Akseli" (or any other member from the Home component)
+  // Render the App component
+  render(<App />);
+  
+  // Wait for the image to load (due to lazy loading)
   const imageElement = await waitFor(() => screen.getByAltText(/Akseli/i));
 
   // Check that the image is in the document
