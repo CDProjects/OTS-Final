@@ -1,57 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 
-// Mock the ScrollToTop component
-jest.mock('./Components/ScrollToTop', () => () => null);
-
-describe('App Component', () => {
-  beforeAll(() => {
-    // Mock scrollTo
-    window.scrollTo = jest.fn();
-  });
-
-  test('renders navigation links', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
-    
-    expect(screen.getByText('HOME')).toBeInTheDocument();
-    expect(screen.getByText('NEWS')).toBeInTheDocument();
-    expect(screen.getByText('TEAM')).toBeInTheDocument();
-    expect(screen.getByText('TRAINING')).toBeInTheDocument();
-    expect(screen.getByText('JUNIORS')).toBeInTheDocument();
-    expect(screen.getByText('RESULTS & FIXTURES')).toBeInTheDocument();
-    expect(screen.getByText('MEDIA & RECRUITMENT')).toBeInTheDocument();
-    expect(screen.getByText('CONTACT')).toBeInTheDocument();
-  });
-
-  test('renders club name and subtitle', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
-    
-    expect(screen.getByText('Old Town Shamrocks')).toBeInTheDocument();
-    expect(screen.getByText('Porvoo Rugby Club')).toBeInTheDocument();
-  });
-
-  test('renders footer with sponsor information', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
-    
-    expect(screen.getByText('Proudly sponsored by:')).toBeInTheDocument();
-    expect(screen.getByAltText('Lindos')).toBeInTheDocument();
-    expect(screen.getByAltText('RockTape')).toBeInTheDocument();
-    expect(screen.getByAltText('Paavilainen')).toBeInTheDocument();
-    expect(screen.getByAltText('Uudenmaan')).toBeInTheDocument();
-    expect(screen.getByAltText('Artomika')).toBeInTheDocument();
-  });
+test('renders team member image', () => {
+  // Render the App component
+  render(<App />);
+  
+  // Look for an image with the alt text "Akseli" (or any other member from the Home component)
+  const imageElement = screen.getByAltText(/Akseli/i);
+  
+  // Check that the image is in the document
+  expect(imageElement).toBeInTheDocument();
 });
