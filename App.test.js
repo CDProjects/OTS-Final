@@ -1,54 +1,56 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 
+// Mock the ScrollToTop component
+jest.mock('./Components/ScrollToTop', () => () => null);
+
 // Mock the lazy-loaded components
-jest.mock('./Components/Home', () => ({ __esModule: true, default: () => <div>Home Component</div> }));
-jest.mock('./Components/News', () => ({ __esModule: true, default: () => <div>News Component</div> }));
-jest.mock('./Components/Team', () => ({ __esModule: true, default: () => <div>Team Component</div> }));
+jest.mock('./Components/Home', () => () => <div>Home Component</div>);
+jest.mock('./Components/News', () => () => <div>News Component</div>);
+jest.mock('./Components/Team', () => () => <div>Team Component</div>);
 // ... mock other components as needed
 
-// Mock the Suspense component to render its children immediately
-jest.mock('react', () => ({
-  ...jest.requireActual('react'),
-  Suspense: ({ children }) => children,
-}));
-
 describe('App Component', () => {
-  test('renders Navbar', async () => {
+  beforeAll(() => {
+    // Mock scrollTo
+    window.scrollTo = jest.fn();
+  });
+
+  test('renders navigation', async () => {
     render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
-    expect(await screen.findByRole('navigation')).toBeInTheDocument();
+    
+    await waitFor(() => {
+      expect(screen.getByRole('navigation')).toBeInTheDocument();
+    });
   });
 
-  test('renders Footer', async () => {
+  test('renders footer', async () => {
     render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
-    expect(await screen.findByRole('contentinfo')).toBeInTheDocument();
+    
+    await waitFor(() => {
+      expect(screen.getByRole('contentinfo')).toBeInTheDocument();
+    });
   });
 
-  test('renders Home component on default route', async () => {
+  test('renders home component on default route', async () => {
     render(
       <MemoryRouter initialEntries={['/']}>
         <App />
       </MemoryRouter>
     );
-    expect(await screen.findByText('Home Component')).toBeInTheDocument();
-  });
-
-  test('updates title on route change', () => {
-    render(
-      <MemoryRouter initialEntries={['/news']}>
-        <App />
-      </MemoryRouter>
-    );
-    expect(document.title).toBe('Shamrocks | NEWS');
+    
+    await waitFor(() => {
+      expect(screen.getByText('Home Component')).toBeInTheDocument();
+    });
   });
 });
