@@ -26,7 +26,7 @@
     "eject": "react-scripts eject",
     "convert-webp": "node convert-to-webp.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d build -r https://github.com/CDProjects/OTS-Final.git",
     "update-table": "node src/updateCompetitionTable.js",
     "test:watch": "craco test --watch"
   },
