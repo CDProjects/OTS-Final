@@ -14,43 +14,71 @@ L.Icon.Default.mergeOptions({
 });
 
 const Training = () => {
-  const pormestariPosition = [60.387971295934584, 25.64936744011304]; // Latitude and Longitude for Pormestarinkatu 14
-  const tolkkinenPosition = [60.34205298694687, 25.58413372778992]; // Replace with actual coordinates for Tolkinen
+  const pormestariPosition = [60.387971295934584, 25.64936744011304]; // Pormestarinkatu 14
+  const tolkkinenPosition = [60.34205298694687, 25.58413372778992]; // Tolkinen
+  const kanteletaloPosition = [60.38820023040421, 25.699402494474008]; // Kanteletalo B-Hall
+  const hamariPosition = [60.366146512050335, 25.641467413302312]; // Hamari
 
   return (
     <section id="training-section" className="training-section training-page">
       <div id="training-marker"></div>
       <h1 className="section-title">TRAINING</h1>
       <div className="training-container">
-        {/* 
-<div className="training-item">
-  <h3>Juniors</h3>
-  <p>THURSDAYS 18:30-19:30 @ KOKON GRASS PITCH</p>
-  <LazyMap
-    center={kokonPosition}
-    zoom={13}
-    scrollWheelZoom={false}
-    className="map"
-  >
-    <TileLayer
-      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    />
-    <Marker position={kokonPosition}>
-      <Popup>Kokon Grass Pitch</Popup>
-    </Marker>
-  </LazyMap>
-  <a
-    href="https://maps.app.goo.gl/jxtehzqJn4foogGX6"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="map-link"
-  >
-    View on Google Maps
-  </a>
-</div> 
-*/}
 
+        {/* Juniors Section */}
+        <div className="training-item">
+          <h3>Juniors</h3>
+          <p>THURSDAY APRIL 3rd 17:00-18:00 @ KANTELETALO B-HALL</p>
+          <p>THURSDAYS APRIL 10th - MAY 15th 18:00-19:00 @ KANTELETALO B-HALL</p>
+          <LazyMap
+            center={kanteletaloPosition}
+            zoom={15}
+            scrollWheelZoom={false}
+            className="map"
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={kanteletaloPosition}>
+              <Popup>Kanteletalo B-Hall</Popup>
+            </Marker>
+          </LazyMap>
+          <a
+            href="https://maps.app.goo.gl/Bjar5hh3X9AaSpA17"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="map-link"
+          >
+            View Kanteletalo on Google Maps
+          </a>
+
+          <p>MONDAYS MAY 19th - SEPTEMBER 15th 17:45-18:45 @ HAMARI</p>
+          <LazyMap
+            center={hamariPosition}
+            zoom={15}
+            scrollWheelZoom={false}
+            className="map"
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={hamariPosition}>
+              <Popup>Hamari Field</Popup>
+            </Marker>
+          </LazyMap>
+          <a
+            href="https://maps.app.goo.gl/xdfiqo9ubjDxQYNL8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="map-link"
+          >
+            View Hamari on Google Maps
+          </a>
+        </div>
+
+        {/* Mens Section */}
         <div className="training-item">
           <h3>Mens</h3>
           <p>
