@@ -42,6 +42,7 @@
   .training-section.training-page .map-link {
     display: inline-block;
     margin-top: 5px;
+    margin-bottom: 20px; 
     color: #ffffff;
     text-decoration: underline;
   }
