@@ -52,7 +52,9 @@ const Training = () => {
           >
             View Kanteletalo on Google Maps
           </a>
+          </div>
 
+          <div className="training-item">
           <p>MONDAYS MAY 19th - SEPTEMBER 15th 17:45-18:45 @ HAMARI</p>
           <LazyMap
             center={hamariPosition}
@@ -104,7 +106,7 @@ const Training = () => {
             rel="noopener noreferrer"
             className="map-link"
           >
-            View on Google Maps
+            View Tolkkinen Tekonurmi on Google Maps
           </a>
         </div>
         <div className="training-item">
@@ -129,7 +131,7 @@ const Training = () => {
             rel="noopener noreferrer"
             className="map-link"
           >
-            View on Google Maps
+            View on Pormestarinkatu 14 Google Maps
           </a>
         </div>
       </div>
