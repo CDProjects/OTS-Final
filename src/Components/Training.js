@@ -84,7 +84,7 @@ const Training = () => {
         <div className="training-item">
           <h3>Mens</h3>
           <p>
-            TUESDAYS and THURSDAYS from 1.4 19:45-21:30 @ TOLKKINEN TEKONURMI
+            TUESDAYS and THURSDAYS 19:45-21:30 @ TOLKKINEN TEKONURMI
           </p>
           <LazyMap
             center={tolkkinenPosition}
