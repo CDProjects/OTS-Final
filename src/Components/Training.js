@@ -131,7 +131,7 @@ const Training = () => {
             rel="noopener noreferrer"
             className="map-link"
           >
-            View on Pormestarinkatu 14 Google Maps
+            View Pormestarinkatu 14 on Google Maps
           </a>
         </div>
       </div>
