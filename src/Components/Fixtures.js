@@ -57,6 +57,9 @@ const Fixtures = () => {
   return (
     <ErrorBoundary>
       <section id="fixtures-section" className="fixtures-section">
+        {/* … your header, loading/status messages, etc. … */}
+
+      {/*
         <div id="fixtures-marker"></div>
         <div className="content-container">
           <h1 className="section-title">RESULTS & FIXTURES</h1>
@@ -68,7 +71,7 @@ const Fixtures = () => {
           <div className="competition-table-wrapper">
           <div className="competition-table" dangerouslySetInnerHTML={{ __html: competitionTable }} />
         </div>
-        )}
+        )}   */}
 
         <picture>
           <source srcSet={shamrocksHRC2024.replace('.jpg', '.webp')} type="image/webp" />
