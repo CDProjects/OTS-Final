@@ -44,7 +44,7 @@ const Fixtures = () => {
     { date: "14.6", teams: "SHAMROCKS - KALEV", score: "0 - 0" },
     { date: "28.6", teams: "SHAMROCKS - TAMPERE", score: "0 - 0" },
     { date: "5.7", teams: "EAGLES - SHAMROCKS", score: "0 - 0" },
-    { date: "12.7", teams: "SHAMROCK - WARRIORS", score: "0 - 0" },
+    { date: "12.7", teams: "SHAMROCKS - WARRIORS", score: "0 - 0" },
     { date: "26.7", teams: "KALEV - SHAMROCKS", score: "0 - 0" },
     { date: "9.8", teams: "HELSINKI - SHAMROCKS", score: "0 - 0" },
     { date: "16.8", teams: "TAMPERE - SHAMROCKS", score: "0 - 0" },
