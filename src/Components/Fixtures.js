@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ErrorBoundary from './ErrorBoundary';
 import './Fixtures.css';
-import shamrocksHRC2024 from '../Images/GF.jpeg';
+import shamrocksHRC2024 from '../Images/Games 2025.jpeg';
 
 const Fixtures = () => {
   const [competitionTable, setCompetitionTable] = useState('');
@@ -40,18 +40,18 @@ const Fixtures = () => {
   }, []);
 
   const fixturesData = [
-    { date: "1.6", teams: "SHAMROCKS - TAMPERE", score: "26 - 14" },
-    { date: "15.6", teams: "SHAMROCKS - WARRIORS", score: "21 - 38" },
-    { date: "29.6", teams: "SHAMROCKS - EAGLES", score: "41 - 14" },
-    { date: "13.7", teams: "SHAMROCKS - HELSINKI", score: "26 - 12" },
-    { date: "20.7", teams: "HELSINKI - SHAMROCKS", score: "10 - 28" },
-    { date: "3.8", teams: "WARRIORS - SHAMROCKS", score: "7 - 33" },
-    { date: "17.8", teams: "TAMPERE - SHAMROCKS", score: "7 - 32" },
-    { date: "24.8", teams: "KALEV - SHAMROCKS", score: "24 - 35" },
-    { date: "31.8", teams: "EAGLES - SHAMROCKS", score: "14 - 34" },
-    { date: "14.9", teams: "SHAMROCKS - KALEV", score: "27 - 32" },
-    { date: "21.9", teams: "SHAMROCKS - HELSINKI", score: "21 - 17" },
-    { date: "28.9", teams: "WARRIORS - SHAMROCKS", score: "17 - 15" },
+    { date: "24.5", teams: "SHAMROCKS - EAGLES", score: "0 - 0" },
+    { date: "14.6", teams: "SHAMROCKS - KALEV", score: "0 - 0" },
+    { date: "28.6", teams: "SHAMROCKS - TAMPERE", score: "0 - 0" },
+    { date: "5.7", teams: "EAGLES - SHAMROCKS", score: "0 - 0" },
+    { date: "12.7", teams: "SHAMROCK - WARRIORS", score: "0 - 0" },
+    { date: "26.7", teams: "KALEV - SHAMROCKS", score: "0 - 0" },
+    { date: "9.8", teams: "HELSINKI - SHAMROCKS", score: "0 - 0" },
+    { date: "16.8", teams: "TAMPERE - SHAMROCKS", score: "0 - 0" },
+    { date: "30.8", teams: "WARRIORS - SHAMROCKS", score: "0 - 0" },
+    { date: "6.9", teams: "SHAMROCKS - HELSINKI", score: "0 - 0" },
+    { date: "TBA", teams: "SEMI-FINAL", score: "0 - 0" },
+    { date: "TBA", teams: "GRAND FINAL", score: "0 - 0" },
   ];
 
   return (
@@ -76,7 +76,7 @@ const Fixtures = () => {
         </picture>
         
         <div className="content-container">
-          <h2 className="fixtures-subtitle">2024 Championship</h2>
+          <h2 className="fixtures-subtitle">2025 Championship</h2>
           <h3 className="fixtures-subtitle">OTS FIXTURES &amp; RESULTS</h3>
           
           {fixturesData.map((fixture, index) => (
