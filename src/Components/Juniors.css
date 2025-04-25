@@ -1,118 +1,111 @@
+/* ──────────────────────────────────────────────
+   Base styles (unchanged)
+────────────────────────────────────────────── */
+
 .juniors-section {
+  background: #000;
+  color: #fff;
+  padding: 60px 20px 100px;
   text-align: center;
-  padding-top: 60px;
-  color: #ffffff;
-  padding-bottom: 100px; /* Adjust this value based on your footer height */
 }
 
-.juniors-picture,
-.juniors-image {
-  width: 100%;
-  max-width: 500px;
-  margin: 10px auto;
-  margin-bottom: 10px;
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 40px;
 }
 
-.juniors-section h2 {
-  font-size: 24px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
-.juniors-section .content-container p {
-  font-size: 15px;
-  max-width: 400px;
+.content-container {
+  max-width: 1200px;
   margin: 0 auto;
+}
+
+.responsive-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.two-up-row {
+  display: none;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.text-block .content-container p {
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 1em;
+  text-align: center;
 }
 
 .juniors-english {
   display: none;
 }
 
-.new-images-wrapper {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.juniors-image.hidden-on-mobile {
-    display: none;
-  }
-  
-  @media (min-width: 1025px) {
-    .juniors-image.hidden-on-mobile {
-      display: block;
-    }
-  
-    picture.juniors-image.hidden-on-mobile {
-      width: 49%;
-      max-width: 580px;
-    }
-  
-    picture.juniors-image.hidden-on-mobile img {
-      width: 100%;
-      height: auto;
-      border-radius: 5px;
-    }
-  }
+/* ──────────────────────────────────────────────
+   Desktop (≥1025px)
+────────────────────────────────────────────── */
 
 @media (min-width: 1025px) {
-    .juniors-section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      padding-bottom: 100px; /* Adjust this value based on your footer height */
-    }
-  
-    .new-images-wrapper {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-  
-    .juniors-image.hidden-on-mobile {
-      display: block;
-      width: 49%;
-      max-width: 580px;
-      height: auto;
-      border-radius: 5px;
-    }
-  
-    .juniors-content-group {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-  
-    .juniors-picture-wrapper {
-      width: 50%;
-      max-width: 800px;
-      padding-left: 5px;
-    }
-  
-    .juniors-picture {
-      width: 100%;
-      height: auto;
-      border-radius: 5px;
-    }
-  
-    .juniors-section .content-container {
-      width: 49%;
-      max-width: 580px;
-      padding-left: 20px;
-    }
-  
-    .juniors-section .content-container p {
-      max-width: none;
-      width: 100%;
-      text-align: left;
-      margin: 0 0 20px 0;
-      font-size: 16px;
-      line-height: 1.5;
-    }
-  
-    .juniors-english {
-      display: block;
-      padding-top: 20px;
-    }
+
+  .two-up-row {
+    display: flex;
   }
+
+  /* ↑↑↑ bump the gap here ↑↑↑ */
+  .top-images-wrapper {
+    max-width: 1200px;
+    gap: 20px;           /* ← was 5px, now 20px */
+    margin-bottom: 20px;
+  }
+
+  .play-images-wrapper {
+    max-width: 1200px;
+    gap: 20px;           /* ← was 5px, now 20px */
+    margin-top: 20px;
+  }
+
+  .top-images-wrapper picture,
+  .play-images-wrapper picture {
+    flex: 0 0 360px;
+    max-width: 360px;
+  }
+
+  .text-block .content-container {
+    max-width: 1200px;
+    margin: 0 auto 20px;
+    text-align: left;
+  }
+
+  .juniors-english {
+    display: block;
+    margin-top: 1em;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   Mobile (<1025px)
+────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .top-images-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+  .top-images-wrapper picture {
+    width: 100%;
+    max-width: none;
+  }
+
+  .play-images-wrapper {
+    display: none;
+  }
+
+  .text-block .content-container p {
+    text-align: center;
+  }
+}
