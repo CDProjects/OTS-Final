@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.13e177fb.css",
+    "main.css": "/static/css/main.dbdf3b21.css",
     "main.js": "/static/js/main.c2952fbe.js",
     "static/css/7.deb53f7e.chunk.css": "/static/css/7.deb53f7e.chunk.css",
     "static/js/7.88cbf472.chunk.js": "/static/js/7.88cbf472.chunk.js",
@@ -63,7 +63,7 @@
     "static/media/OTS Shield Logo.png": "/static/media/OTS Shield Logo.2bb2da52f989905a9cd0.png",
     "static/media/Paavilainen.png": "/static/media/Paavilainen.f98ab80f314656afe93e.png",
     "index.html": "/index.html",
-    "main.13e177fb.css.map": "/static/css/main.13e177fb.css.map",
+    "main.dbdf3b21.css.map": "/static/css/main.dbdf3b21.css.map",
     "main.c2952fbe.js.map": "/static/js/main.c2952fbe.js.map",
     "7.deb53f7e.chunk.css.map": "/static/css/7.deb53f7e.chunk.css.map",
     "7.88cbf472.chunk.js.map": "/static/js/7.88cbf472.chunk.js.map",
@@ -89,7 +89,7 @@
     "736.f71a1553.chunk.js.map": "/static/js/736.f71a1553.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.13e177fb.css",
+    "static/css/main.dbdf3b21.css",
     "static/js/main.c2952fbe.js"
   ]
 }
