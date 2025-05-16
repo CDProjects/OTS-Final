@@ -1,0 +1,81 @@
+/* ==========================================================================
+   Touch.css — Touch Rugby page styles with responsive side-padding
+   ========================================================================== */
+
+/* 1) Wrapper: top padding + side padding to keep text off the edges */
+.touch-section.touch-page {
+  text-align: center;        /* centers H1 + poster */
+  padding: 60px 20px 0;      /* 60px top, 20px sides, 0 bottom */
+}
+
+/* Tablet: a bit more gutter */
+@media (min-width: 768px) {
+  .touch-section.touch-page {
+    padding: 60px 40px 0;
+  }
+}
+
+/* Desktop: more gutter */
+@media (min-width: 1024px) {
+  .touch-section.touch-page {
+    padding: 60px 60px 0;
+  }
+}
+
+/* 2) Page title: match Contact/Training (30px size, 20px bottom, centered) */
+.touch-title {
+  font-size: 30px;
+  margin: 0 0 20px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* 3) Poster styling (unchanged) */
+.touch-poster-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.touch-poster {
+  max-width: 800px;
+  width: 100%;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 4) Section spacing */
+.touch-section {
+  margin-bottom: 2rem;
+}
+
+/* 5) Body copy: left-align for readability */
+.touch-section.touch-page .touch-section {
+  text-align: left;
+}
+
+/* 6) Sub-headings: centered under each section */
+.touch-section h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* 7) Paragraphs & lists: line-height + spacing */
+.touch-section p {
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+.touch-section ul {
+  list-style: disc inside;
+  margin-bottom: 0.75rem;
+}
+
+/* 8) Q/A blocks */
+.touch-qa {
+  margin-bottom: 1.5rem;
+}
+.touch-qa .question {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}

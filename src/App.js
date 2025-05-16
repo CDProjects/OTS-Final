@@ -4,6 +4,7 @@ import ScrollToTop from './Components/ScrollToTop';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import Spinner from './Components/Spinner';
+import Touch from './Components/Touch';
 
 const Home = lazy(() => import('./Components/Home'));
 const News = lazy(() => import('./Components/News'));
@@ -57,6 +58,7 @@ function App() {
               <Route path="/team" element={<Team />} />
               <Route path="/training" element={<Training />} />
               <Route path="/juniors" element={<Juniors />} />
+              <Route path="/touch" element={<Touch />} />
               <Route path="/fixtures" element={<Fixtures />} />
               <Route path="/media-recruitment" element={<MedRec />} />
               <Route path="/contact" element={<Contact />} />
